@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Data for Hostels ---
-    // We store hostel data in an object where keys match the university dropdown values.
+    // IMPORTANT: Duplicate your hostelsData object here.
+    // In a real application, you'd fetch this data from a server or a single source.
+    // For this client-side example, we're replicating it.
     const hostelsData = {
         'university-a': [
             {
@@ -193,49 +194,83 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    // --- DOM Elements ---
-    const universitySelect = document.getElementById('university-select');
-    const hostelGrid = document.getElementById('hostel-grid');
-    const findButton = document.querySelector('.btn-primary');
+    const hostelDetailContent = document.getElementById('hostel-detail-content');
 
-
-    // --- Function to Display Hostels ---
-    const displayHostels = (universityId) => {
-        hostelGrid.innerHTML = ''; // Clear the grid first
-
-        const selectedHostels = hostelsData[universityId];
-
-        if (!selectedHostels || selectedHostels.length === 0) {
-            hostelGrid.innerHTML = `<p class="placeholder-text">No hostels found for the selected university.</p>`;
-            return;
-        }
-
-        selectedHostels.forEach(hostel => {
-            const card = document.createElement('div');
-            card.className = 'hostel-card';
-
-            // IMPORTANT CHANGE: The href now points to hostel-details.html and passes the hostel ID
-            card.innerHTML = `
-                <img src="${hostel.image}" alt="${hostel.name}">
-                <div class="card-content">
-                    <h3>${hostel.name}</h3>
-                    <p class="location">${hostel.location}</p>
-                    <a href="hostel-details.html?id=${hostel.id}" class="btn-secondary">View Details</a>
-                </div>
-            `;
-
-            hostelGrid.appendChild(card);
-        });
+    // Function to get URL parameters
+    const getUrlParameter = (name) => {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        const results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    // --- Event Listener ---
-    findButton.addEventListener('click', () => {
-        const selectedUniversity = universitySelect.value;
-        if (selectedUniversity) {
-            displayHostels(selectedUniversity);
-        } else {
-            hostelGrid.innerHTML = `<p class="placeholder-text">Please select a university first.</p>`;
+    const hostelId = getUrlParameter('id');
+
+    if (hostelId) {
+        // Find the hostel by ID across all universities
+        let foundHostel = null;
+        for (const universityKey in hostelsData) {
+            foundHostel = hostelsData[universityKey].find(hostel => hostel.id === hostelId);
+            if (foundHostel) {
+                break; // Found the hostel, stop searching
+            }
         }
-    });
+
+        if (foundHostel) {
+            // Populate the details
+            hostelDetailContent.innerHTML = `
+                <div class="hostel-detail-card">
+                    <img src="${foundHostel.image}" alt="${foundHostel.name}" class="detail-image">
+                    <div class="detail-content">
+                        <h1>${foundHostel.name}</h1>
+                        <p class="detail-location"><i class="icon-location"></i> ${foundHostel.location}</p>
+                        <p class="detail-description">${foundHostel.description}</p>
+
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <strong>Distance from College:</strong>
+                                <span>${foundHostel.distance}</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Gender Specific:</strong>
+                                <span>${foundHostel.gender}</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Room Rent:</strong>
+                                <span>${foundHostel.roomRent}</span>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Room Capacity:</strong>
+                                <span>${foundHostel.roomCapacity}</span>
+                            </div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Hostel Facilities</h3>
+                            <ul class="facilities-list">
+                                ${foundHostel.facilities.map(facility => `<li>${facility}</li>`).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="detail-section">
+                            <h3>Contact Details</h3>
+                            <p><strong>Owner Name:</strong> ${foundHostel.ownerContactName}</p>
+                            <p><strong>Phone:</strong> <a href="tel:${foundHostel.ownerPhone}">${foundHostel.ownerPhone}</a></p>
+                            <p><strong>Email:</strong> <a href="mailto:${foundHostel.ownerEmail}">${foundHostel.ownerEmail}</a></p>
+                        </div>
+
+                        <a href="index.html" class="btn-primary back-btn">Back to Hostels</a>
+                    </div>
+                </div>
+            `;
+            hostelDetailContent.classList.remove('loading-state');
+        } else {
+            hostelDetailContent.innerHTML = `<p class="error-message">Hostel not found.</p>`;
+            hostelDetailContent.classList.remove('loading-state');
+        }
+    } else {
+        hostelDetailContent.innerHTML = `<p class="error-message">No hostel ID provided. Please go back to the <a href="index.html">home page</a> to select a hostel.</p>`;
+        hostelDetailContent.classList.remove('loading-state');
+    }
 
 });

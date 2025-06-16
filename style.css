@@ -218,6 +218,221 @@ footer {
     margin-top: 40px;
 }
 
+
+
+
+
+/* --- Hostel Details Page Specific Styles --- */
+.hostel-details-page {
+    padding: 60px 20px;
+    min-height: calc(100vh - 180px); /* Adjust to ensure footer is at bottom */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align content to the top */
+}
+
+.hostel-detail-section {
+    width: 100%;
+    max-width: 900px; /* Max width for the detail card */
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 40px; /* Space above footer */
+}
+
+#hostel-detail-content {
+    /* Base styles for the content container */
+}
+
+#hostel-detail-content.loading-state,
+#hostel-detail-content .error-message {
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.hostel-detail-card {
+    display: flex;
+    flex-direction: column; /* Stack image and content on small screens */
+}
+
+.detail-image {
+    width: 100%;
+    height: 400px; /* Fixed height for consistency */
+    object-fit: cover;
+    border-bottom: 1px solid var(--light-gray-color);
+}
+
+.detail-content {
+    padding: 30px;
+}
+
+.detail-content h1 {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.detail-location {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Basic icon placeholder for location */
+.detail-location .icon-location::before {
+    content: "📍"; /* Unicode character for a location pin */
+    font-size: 1.2em;
+}
+
+.detail-description {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 30px;
+    line-height: 1.7;
+}
+
+.detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray-color);
+}
+
+.detail-item {
+    background-color: var(--secondary-color);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.detail-item strong {
+    display: block;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.detail-section {
+    margin-bottom: 30px;
+}
+
+.detail-section h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--light-gray-color);
+    padding-bottom: 10px;
+}
+
+.facilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 2-3 columns for facilities */
+    gap: 10px;
+}
+
+.facilities-list li {
+    background-color: var(--light-gray-color);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+.facilities-list li::before {
+    content: "✅"; /* Checkmark icon */
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.detail-section p {
+    margin-bottom: 10px;
+}
+
+.detail-section a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.detail-section a:hover {
+    text-decoration: underline;
+}
+
+
+.back-btn {
+    margin-top: 30px;
+    display: block; /* Make it a block element to take full width and respect container padding */
+    width: fit-content; /* Ensure it only takes width of its content */
+    margin-left: auto; /* Center or align as needed */
+    margin-right: auto; /* Center or align as needed */
+    /* Alternatively, if you want it aligned to the left like other text: */
+    margin-left: 0;
+    /* margin-right: auto; */
+}
+
+/* Ensure it matches the padding of the detail-content on small screens */
+@media (max-width: 600px) {
+    .back-btn {
+        width: calc(100% - 40px); /* 100% minus 20px padding on each side of .detail-content */
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        text-align: center; /* Center the text inside the button */
+    }
+}
+
+
+
+/* Responsive adjustments for details page */
+@media (min-width: 769px) {
+    .hostel-detail-card {
+        flex-direction: row; /* Image and content side-by-side on larger screens */
+    }
+
+    .detail-image {
+        width: 40%; /* Image takes 40% width */
+        height: auto; /* Auto height to maintain aspect ratio */
+    }
+
+    .detail-content {
+        width: 60%; /* Content takes 60% width */
+    }
+}
+
+@media (max-width: 600px) {
+    .detail-content h1 {
+        font-size: 2rem;
+    }
+    .detail-location {
+        font-size: 1rem;
+    }
+    .detail-grid {
+        grid-template-columns: 1fr; /* Stack detail items on very small screens */
+    }
+    .facilities-list {
+        grid-template-columns: 1fr; /* Stack facilities on very small screens */
+    }
+    .detail-content {
+        padding: 20px;
+    }
+}
+
+
+
+
+
 /* --- Responsive Design --- */
 @media (max-width: 768px) {
     .hero-content h1 {
