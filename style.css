@@ -451,3 +451,198 @@ footer {
         display: none; /* Or create a hamburger menu */
     }
 }
+
+
+/* --- Listings & Filters Layout --- */
+.listings-and-filters {
+    display: flex;
+    gap: 30px; /* Space between filters and listings */
+    align-items: flex-start; /* Align sections to the top */
+    padding: 60px 20px; /* Same padding as original hostel-listings section */
+}
+
+.filters-section {
+    flex: 0 0 280px; /* Fixed width for the filters sidebar */
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 25px;
+    position: sticky; /* Make filters sticky on scroll */
+    top: 100px; /* Adjust based on header height */
+    z-index: 900;
+}
+
+.filters-section h2 {
+    font-size: 1.8rem;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--light-gray-color);
+}
+
+.filter-group:last-of-type {
+    border-bottom: none; /* No border for the last group */
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.filter-group h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.filter-group label {
+    display: block; /* Make checkboxes/radios stack */
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.filter-group input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--primary-color); /* Style checkbox accent color */
+}
+
+/* Price range inputs */
+.price-range {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.price-range input[type="number"] {
+    width: calc(50% - 15px); /* Half width minus gap */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+}
+
+.price-range span {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Distance slider */
+#distance-slider {
+    width: 100%;
+    margin-top: 10px;
+    -webkit-appearance: none; /* Remove default slider styles */
+    appearance: none;
+    height: 8px;
+    background: var(--light-gray-color);
+    border-radius: 5px;
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .2s;
+}
+
+#distance-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#distance-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#distance-value {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.filter-actions {
+    display: flex;
+    flex-direction: column; /* Stack buttons */
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.filter-actions .btn-primary,
+.filter-actions .btn-secondary {
+    width: 100%; /* Make buttons full width */
+    padding: 12px 20px; /* Slightly smaller padding for filter buttons */
+    font-size: 0.95rem;
+}
+
+/* Adjust hostel listings to take remaining space */
+.hostel-listings {
+    flex: 1; /* Allows it to grow and shrink */
+    padding: 0; /* Remove existing padding as it's now on .listings-and-filters */
+}
+
+/* Add some info fields to hostel card for rent/distance/gender */
+.hostel-card .card-info {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 5px; /* Spacing between info lines */
+}
+.hostel-card .card-info:last-of-type {
+    margin-bottom: 15px; /* More space before button */
+}
+
+
+/* --- Responsive Adjustments for Filters --- */
+@media (max-width: 992px) { /* Tablet and smaller */
+    .listings-and-filters {
+        flex-direction: column; /* Stack filters and listings vertically */
+        align-items: center;
+        gap: 40px; /* More space when stacked */
+    }
+
+    .filters-section {
+        position: static; /* Remove sticky on smaller screens */
+        width: 100%;
+        max-width: 600px; /* Constrain width when stacked */
+    }
+
+    .hostel-listings {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Existing media query will handle hero section. */
+    /* Further refine filter layout if needed for very small screens */
+    .filters-section h2 {
+        font-size: 1.6rem;
+    }
+    .filter-group h3 {
+        font-size: 1.1rem;
+    }
+    .filter-actions {
+        flex-direction: row; /* Buttons side-by-side if enough space */
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .filter-actions .btn-primary,
+    .filter-actions .btn-secondary {
+        width: auto; /* Allow buttons to size content */
+        flex: 1; /* Share space */
+        min-width: 120px; /* Ensure minimum width */
+    }
+}

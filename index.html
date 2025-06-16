@@ -39,10 +39,51 @@
             </div>
         </section>
 
-        <section class="hostel-listings container">
-            <h2>Available Hostels</h2>
-            <div class="hostel-grid" id="hostel-grid">
-                <p class="placeholder-text">Please select a university to see available hostels.</p>
+        <section class="listings-and-filters container">
+            <div class="filters-section">
+                <h2>Filter Hostels</h2>
+
+                <div class="filter-group">
+                    <h3>Gender Specific</h3>
+                    <label><input type="checkbox" name="gender" value="Boys Only"> Boys Only</label>
+                    <label><input type="checkbox" name="gender" value="Girls Only"> Girls Only</label>
+                    <label><input type="checkbox" name="gender" value="Unisex"> Unisex</label>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Room Rent (₹)</h3>
+                    <div class="price-range">
+                        <input type="number" id="min-rent" placeholder="Min" min="0">
+                        <span>-</span>
+                        <input type="number" id="max-rent" placeholder="Max" min="0">
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Distance from University</h3>
+                    <input type="range" id="distance-slider" min="0" max="10" value="10" step="0.5">
+                    <p>Max Distance: <span id="distance-value"></span></p>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Basic Services</h3>
+                    <label><input type="checkbox" name="service" value="AC"> AC</label>
+                    <label><input type="checkbox" name="service" value="Wi-Fi"> Wi-Fi</label>
+                    <label><input type="checkbox" name="service" value="Mess Food"> Mess Food</label>
+                    <label><input type="checkbox" name="service" value="Laundry Service"> Laundry</label>
+                </div>
+
+                <div class="filter-actions">
+                    <button id="apply-filters-btn" class="btn-primary">Apply Filters</button>
+                    <button id="clear-filters-btn" class="btn-secondary">Clear Filters</button>
+                </div>
+            </div>
+
+            <div class="hostel-listings">
+                <h2>Available Hostels</h2>
+                <div class="hostel-grid" id="hostel-grid">
+                    <p class="placeholder-text">Please select a university to see available hostels.</p>
+                </div>
             </div>
         </section>
     </main>
