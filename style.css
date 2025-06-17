@@ -449,6 +449,7 @@ footer {
 
     .nav-links {
         gap: 12px;
+        font-size: 10px;
     }
 }
 
@@ -876,6 +877,10 @@ footer {
     .problem-solution ul li .bullet-icon {
         margin-bottom: 5px;
     }
+    .our-mission .btn-primary {
+    width: 100%;
+    max-width: 200px;
+}
 }
 
 
@@ -1131,6 +1136,7 @@ footer {
         padding: 18px;
     }
     .contact-form-card {
+        width: 90%;
         padding: 30px;
     }
 }
