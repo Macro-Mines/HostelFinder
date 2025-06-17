@@ -558,7 +558,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p><strong>Email:</strong> <a href="mailto:${foundHostel.ownerEmail}">${foundHostel.ownerEmail}</a></p>
                         </div>
 
-                        <a href="index.html" class="btn-primary back-btn">Back to Hostels</a>
+                        <a href="index.html#find-hostel" class="btn-primary back-btn">Back to Hostels</a>
                     </div>
                 </div>
             `;
@@ -568,7 +568,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hostelDetailContent.classList.remove('loading-state');
         }
     } else {
-        hostelDetailContent.innerHTML = `<p class="error-message">No hostel ID provided. Please go back to the <a href="index.html">home page</a> to select a hostel.</p>`;
+        hostelDetailContent.innerHTML = `<p class="error-message">No hostel ID provided. Please go back to the <a href="index.html#find-hostel">home page</a> to select a hostel.</p>`;
         hostelDetailContent.classList.remove('loading-state');
     }
 

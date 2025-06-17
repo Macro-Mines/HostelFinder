@@ -149,6 +149,29 @@ nav {
     color: #fff;
 }
 
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    #university-select, .btn-primary {
+        width: 100%;
+    }
+
+    .nav-links {
+        gap: 12px;
+        font-size: 10px;
+    }
+}
+
+
+
 /* --- Hostel Listings Section --- */
 .hostel-listings {
     padding: 60px 20px;
@@ -171,6 +194,7 @@ nav {
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     overflow: hidden;
+    padding-bottom: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -199,6 +223,8 @@ nav {
     color: #666;
     margin-bottom: 20px;
 }
+
+
 
 /* NEWLY ADDED STYLE */
 .placeholder-text {
@@ -384,14 +410,6 @@ footer {
     /* margin-right: auto; */
 }
 
-/* Ensure it matches the padding of the detail-content on small screens */
-@media (max-width: 600px) {
-    .back-btn {
-        width: calc(100% - 40px); /* 100% minus 20px padding on each side of .detail-content */
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
-        text-align: center; /* Center the text inside the button */
-    }
-}
 
 
 
@@ -427,31 +445,20 @@ footer {
     .detail-content {
         padding: 20px;
     }
-}
-
-
-
-
-
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-
-    .search-container {
-        flex-direction: column;
-    }
-
-    #university-select, .btn-primary {
+    
+    .back-btn {
+        /*width: calc(100% - 40px);*/
         width: 100%;
-    }
-
-    .nav-links {
-        gap: 12px;
-        font-size: 10px;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        text-align: center; /* Center the text inside the button */
     }
 }
+
+
+
+
+
+
 
 
 /* --- Listings & Filters Layout --- */
@@ -617,7 +624,7 @@ footer {
 
     .filters-section {
         position: static; /* Remove sticky on smaller screens */
-        width: 100%;
+        width: 90%;
         max-width: 600px; /* Constrain width when stacked */
     }
 
