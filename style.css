@@ -7,7 +7,22 @@
     --light-gray-color: #e9ecef;
     --border-radius: 8px;
     --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    --dark-blue-color: #212529;
+    --box-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
+
+/* --- General Setup --- */
+/* :root {
+    --primary-rgb: 0, 123, 255; RGB values of --primary-color (#007BFF)
+    --secondary-rgb: 248, 249, 250; RGB values of --secondary-color (#f8f9fa)
+    --dark-blue-color: #212529; A very dark grey, commonly used for strong text/headings
+    --box-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.08); A lighter shadow for specific elements
+    --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15); A stronger shadow for hover effects
+} */
+
+
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -70,6 +85,22 @@ nav {
 
 .nav-links a:hover {
     color: var(--primary-color);
+}
+
+
+#hostel-threejs {
+    width: 100%;
+    height: 600px;
+    border: none;
+    display: block;
+    max-width: 100vw;
+}
+
+/* Responsive: Adjust height for small screens */
+@media (max-width: 600px) {
+    #hostel-threejs {
+        height: 400px;
+    }
 }
 
 /* --- Hero Section --- */
@@ -227,7 +258,8 @@ nav {
 
 
 /* NEWLY ADDED STYLE */
-.placeholder-text {
+.placeholder-text,
+.loading-messege {
     color: #666;
     font-size: 1.1rem;
     text-align: center;
@@ -235,13 +267,14 @@ nav {
     grid-column: 1 / -1; /* Make it span all columns in the grid */
 }
 
+
 /* --- Footer --- */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    margin-top: 40px;
+    margin-top: 0px;
 }
 
 
@@ -422,6 +455,7 @@ footer {
     .detail-image {
         width: 40%; /* Image takes 40% width */
         height: auto; /* Auto height to maintain aspect ratio */
+        
     }
 
     .detail-content {
@@ -462,6 +496,7 @@ footer {
 
 
 /* --- Listings & Filters Layout --- */
+
 .listings-and-filters {
     display: flex;
     gap: 30px; /* Space between filters and listings */
@@ -478,6 +513,14 @@ footer {
     position: sticky; /* Make filters sticky on scroll */
     top: 100px; /* Adjust based on header height */
     z-index: 900;
+}
+
+#hostel-gif {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: auto;
 }
 
 .filters-section h2 {
@@ -658,7 +701,7 @@ footer {
 /* --- About Page Specific Styles --- */
 
 .about-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hostel.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hostel.jpg') no-repeat center center/cover;
     color: #fff;
     text-align: center;
     padding: 100px 20px;
@@ -799,7 +842,7 @@ footer {
 .feature-icon {
     font-size: 3.5rem; /* Larger icons */
     color: var(--secondary-color);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: block; /* Ensures margin works */
 }
 
@@ -895,7 +938,7 @@ footer {
 /* --- Contact Page Specific Styles --- */
 
 .contact-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hostel.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hostel.jpg') no-repeat center center/cover;
     color: #fff;
     text-align: center;
     padding: 100px 20px;
@@ -1027,16 +1070,11 @@ footer {
     filter: brightness(0) invert(1); /* Makes image white */
 }
 
-/* If using Font Awesome, use this instead of img styles */
-/*
-.social-icon i {
-    line-height: 45px;
-}
-*/
+
 
 
 .social-icon:hover {
-    background-color: var(--secondary-color);
+    background-color: var(--dark-blue-color);
     transform: translateY(-3px);
 }
 
@@ -1049,6 +1087,14 @@ footer {
     box-shadow: var(--box-shadow);
     padding: 40px;
     max-width: 600px; /* Constrain max width for form */
+}
+
+#messege-gif {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: auto;
 }
 
 .contact-form-card h2 {
@@ -1163,5 +1209,934 @@ footer {
         height: 40px;
         line-height: 40px;
         font-size: 1.6rem;
+    }
+}
+
+
+
+
+
+
+/* --- Owner Page Specific Styles --- */
+.owner-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hostel-2.jpg') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.owner-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(var(--primary-rgb), 0.2), rgba(var(--secondary-rgb), 0.2));
+    z-index: 1;
+}
+
+.owner-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.owner-hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+}
+
+.owner-hero-content .tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.owner-section {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center; /* Center the card */
+}
+
+.add-hostel-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 40px;
+    max-width: 700px; /* Wider form for more fields */
+    width: 100%;
+}
+
+.add-hostel-card h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.add-hostel-card .form-group {
+    margin-bottom: 20px;
+}
+
+.add-hostel-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-blue-color);
+    font-size: 1rem;
+}
+
+.add-hostel-card input[type="text"],
+.add-hostel-card input[type="number"],
+.add-hostel-card input[type="tel"],
+.add-hostel-card input[type="email"],
+.add-hostel-card select,
+.add-hostel-card textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.add-hostel-card input:focus,
+.add-hostel-card select:focus,
+.add-hostel-card textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+.add-hostel-card textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.add-hostel-card .btn-primary {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.message-status {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Responsive adjustments for owner page */
+@media (max-width: 768px) {
+    .owner-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .owner-hero-content .tagline {
+        font-size: 1.2rem;
+    }
+    .owner-section {
+        padding: 60px 20px;
+    }
+    .add-hostel-card {
+        padding: 30px;
+    }
+    .add-hostel-card h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .owner-hero-content h1 {
+        font-size: 2rem;
+    }
+    .owner-hero-content .tagline {
+        font-size: 1rem;
+    }
+}
+
+
+/* Styling for horizontal checkbox groups */
+.checkbox-group.horizontal {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to the next line if space is limited */
+    gap: 15px; /* Adjust spacing between checkboxes */
+    margin-top: 5px; /* Small space below the label */
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between checkbox and its label text */
+    cursor: pointer;
+}
+
+
+/* --- Checkbox Group Styling (for Facilities in owner.html) --- */
+.owner-section .add-hostel-card .checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 columns of equal width */
+    gap: 10px 20px; /* 10px vertical gap, 20px horizontal gap */
+    margin-top: 5px; /* Small space below the label */
+    padding-bottom: 10px; /* Add some padding at the bottom if needed */
+}
+
+/* Ensure individual labels/checkboxes are styled properly within the grid */
+.owner-section .add-hostel-card .checkbox-group label {
+    display: flex; /* Use flexbox for vertical alignment of checkbox and text */
+    align-items: center; /* Vertically center checkbox and text */
+    gap: 8px; /* Space between the checkbox and its label text */
+    cursor: pointer;
+}
+
+/* Basic styling for the checkbox input itself */
+.owner-section .add-hostel-card .checkbox-group input[type="checkbox"] {
+    width: 18px; /* Adjust size */
+    height: 18px; /* Adjust size */
+    accent-color: var(--primary-color); /* Changes the checkbox color (modern browsers) */
+}
+
+
+
+
+/* --- Owner Call to Action Section --- */
+.owner-cta-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hostel-2.jpg') no-repeat center center/cover;
+    height: auto;
+    color: var(--primary-color); /* White text for contrast */
+    padding: 60px 20px; /* Ample padding top/bottom */
+    text-align: center;
+    margin-top: 50px; /* Space from the section above */
+}
+
+.owner-cta-section .owner-cta-content {
+    max-width: 800px; /* Limit content width for readability */
+    margin: 0 auto; /* Center the content */
+}
+
+
+.owner-cta-section h2 {
+    font-size: 2.5em; /* Larger heading */
+    margin-bottom: 20px;
+    color: var(--secondary-color); 
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2); /* Slight text shadow */
+}
+
+.owner-cta-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: var(--light-gray-color);
+}
+
+.owner-cta-section .btn-owner-cta {
+    display: inline-block; /* Allows padding and margin */
+    background-color: var(--primary-color); /* A contrasting, eye-catching yellow/gold */
+    color: white; /* Dark text on the button */
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none; /* Remove default button border */
+}
+
+.owner-cta-section .btn-owner-cta:hover {
+    background-color: var(--primary-hover-color); /* Slightly darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+    .owner-cta-section {
+        padding: 40px 10px;
+        margin-top: 30px;
+        background-position: center top;
+        /* Optionally, make the background less tall on mobile for faster loading: */
+        background-size: cover;
+    }
+    
+    .owner-cta-section .owner-cta-content {
+        max-width: 100%;
+        padding: 0 5px;
+    }
+    
+    .owner-cta-section h2 {
+        font-size: 2em;
+        margin-bottom: 16px;
+    }
+    
+    .owner-cta-section p {
+        font-size: 1em;
+        margin-bottom: 24px;
+    }
+    
+    .owner-cta-section .btn-owner-cta {
+        width: 50%;
+        padding: 14px 0;
+        font-size: 1em;
+        border-radius: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .owner-cta-section {
+        padding: 25px 2vw;
+        margin-top: 15px;
+    }
+    
+    .owner-cta-section h2 {
+        font-size: 1.4em;
+    }
+    
+    .owner-cta-section .btn-owner-cta {
+        font-size: 0.98em;
+        padding: 12px 0;
+    }
+}
+
+
+
+
+
+
+/* --- FAQ Call to Action Section in About Us --- */
+.faq-cta-section {
+    background-color: var(--primary-color); /* Use your primary color for background */
+    color: #ffffff;
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 50px; /* Space from section above */
+    margin-bottom: 0px; /* Space from footer */
+    border-radius: 0px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.faq-cta-section .faq-cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.faq-cta-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.faq-cta-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+.faq-cta-section .faq-cta-button {
+    display: flex; /* Use flexbox to center the icon */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px; /* Diameter of the circle */
+    height: 80px; /* Diameter of the circle */
+    background-color: #ffffff; /* White background for the circle */
+    border-radius: 50%; /* Makes it a perfect circle */
+    margin: 0 auto 15px auto; /* Center the button and add space below */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none; /* Remove underline */
+    overflow: hidden;
+}
+
+.faq-cta-section .faq-cta-button:hover {
+    transform: translateY(-5px) scale(1.05); /* Lift and slightly enlarge on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.faq-cta-section .button-text {
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffffff; /* Text below the button */
+    margin-top: 10px; /* Space from the button */
+    text-decoration: none;
+}
+
+
+
+
+/* --- FAQ Page Styling --- */
+
+.faq-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hostel.jpg') no-repeat center center/cover;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.faq-hero p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.faq-section {
+    padding: 20px 0;
+    margin-bottom: 80px;
+}
+
+.faq-container {
+    max-width: 900px;
+    width: 95%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Important for accordion transition */
+}
+
+.faq-item {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.faq-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.faq-question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    font-size: 1.15em;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    color: var(--primary-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: var(--secondary-color); /* Hover effect for the question bar */
+    color: #ffffff;
+}
+
+.faq-question h3 {
+    margin: 0;
+    flex-grow: 1; /* Allow text to take available space */
+}
+
+.faq-question .icon {
+    font-size: 1.2em;
+    color: #888; /* Default icon color */
+    margin-left: 20px;
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth rotation */
+}
+
+/* Style for when the FAQ item is active (expanded) */
+.faq-item.active .faq-question {
+    background-color: var(--primary-color); /* Active question bar color */
+    color: #ffffff;
+    border-bottom: 1px solid var(--primary-color); /* Match border */
+}
+
+.faq-item.active .faq-question .icon {
+    transform: rotate(180deg); /* Rotate icon when active */
+    color: #ffffff; /* Icon color when active */
+}
+
+.faq-answer {
+    max-height: 0; /* Hidden by default */
+    overflow: hidden; /* Hide overflow content */
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* Smooth slide transition */
+    padding: 0 30px; /* Default padding when collapsed */
+    background-color: #ffffff;
+    color: #444;
+}
+
+.faq-answer p {
+    margin: 0; /* Remove default paragraph margins */
+    padding: 20px 0; /* Padding inside the answer when expanded */
+}
+
+/* When the FAQ item is active, show the answer */
+.faq-item.active .faq-answer {
+    max-height: 200px; /* A value larger than the max possible height of content */
+    padding: 0 30px 20px 30px; /* Padding for expanded state */
+    animation: fadeIn 0.5s ease-in-out; /* Subtle fade in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+
+
+
+/* --- Reviews Call to Action Section in About Us --- */
+.reviews-cta-section {
+    background-color: var(--primary-color); /* A distinct, eye-catching yellow for reviews */
+    color: var(--secondary-color); /* Dark text for contrast */
+    padding: 60px 20px;
+    text-align: center;
+    margin-top: 50px; /* Space above */
+    margin-bottom: 0px; /* Space below before footer */
+    border-radius: 0px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.reviews-cta-section .reviews-cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.reviews-cta-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.reviews-cta-section p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #e0e0e0; /* Darker text for readability on lighter background */
+}
+
+.reviews-cta-section .reviews-cta-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    background-color: var(--secondary-color); /* Primary color for the button circle */
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+.reviews-cta-section .reviews-cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.reviews-cta-section .reviews-cta-button .icon {
+    font-size: 3em; /* Size of the star icon */
+    color: var(--primary-color); /* White color for the star icon */
+    line-height: 1;
+}
+
+.reviews-cta-section .button-text {
+    font-size: 1em;
+    font-weight: 600;
+    color: #ffffff; /* Text below the button */
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+
+
+
+
+/* --- Reviews Page Styling --- */
+
+.reviews-hero {
+    background-color: var(--primary-color);
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hostel.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 80px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reviews-hero h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.reviews-hero p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.review-form-section, .display-reviews-section {
+    padding: 20px 0;
+    margin-bottom: 40px; /* Space between sections */
+}
+
+.review-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+#reviews-gif {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80px;
+    height: auto;
+}
+
+.review-form h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    margin-top: 0;
+}
+
+.review-form .form-group {
+    margin-bottom: 20px;
+}
+
+.review-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.review-form input[type="text"],
+.review-form select,
+.review-form textarea {
+    width: 100%; /* Account for padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in element's total width/height */
+}
+
+.review-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+.review-form .btn-primary {
+    width: 100%;;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#review-message {
+    text-align: center;
+}
+
+.display-reviews-section h2 {
+    text-align: center;
+}
+
+/* --- Review Cards Display --- */
+.review-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    padding: 20px 0;
+    margin: 20px;
+    min-height: 150px; /* Ensure space for loading message */
+    justify-content: center; /* Center items if not enough to fill a row */
+    align-items: flex-start; /* Align items to the start of the cross axis */
+}
+
+.review-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push review text down if needed */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transition */
+}
+
+.review-card:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.review-card .rating-stars {
+    color: #FFD700; /* Gold color for stars */
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    letter-spacing: 2px; /* Space out the stars */
+}
+
+.review-card h3 {
+    font-size: 1.2em;
+    color: var(--primary-color);
+    /* margin-bottom: 2px; */
+}
+
+.review-card .university {
+    font-size: 0.9em;
+    color: #777;
+    margin-bottom: 6px;
+}
+
+.review-card p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 0; /* No bottom margin for the last element */
+    flex-grow: 1; /* Allow review text to grow and push elements down */
+}
+
+/* For loading message in reviews display */
+.display-reviews-section .loading-message {
+    text-align: center;
+    color: #666;
+    font-size: 1.2em;
+    padding: 20px;
+    /* When only message is present, center it in the grid */
+    grid-column: 1 / -1; /* Make it span all columns */
+}
+
+
+
+
+
+
+
+
+/* --- Hostel Expenses Calculator Styling --- */
+
+/* Floating Action Button (FAB) */
+#calculator-fab {
+    position: fixed;
+    bottom: 30px; /* Distance from bottom */
+    right: 30px; /* Distance from right */
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color); /* Use your theme's primary blue */
+    border-radius: 50%; /* Make it round */
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10000; /* Ensure it's above other content */
+}
+
+#calculator-fab:hover {
+    background-color: #0056b3; /* Slightly darker blue on hover */
+    transform: translateY(-3px); /* Slight lift effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+#calculator-fab img {
+    width: 35px; /* Size of the calculator icon */
+    height: 35px;
+    filter: brightness(0) invert(1); /* This makes a black icon white */
+}
+
+
+
+/* Calculator Panel */
+.calculator-panel {
+    position: fixed;
+    bottom: 100px; /* Adjust based on FAB height and desired gap */
+    right: 30px;
+    width: 350px; /* Fixed width */
+    max-height: 80vh; /* Max height to prevent overflowing screen */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+    padding: 25px;
+    box-sizing: border-box; /* Include padding in width */
+    z-index: 9999; /* Ensure it's above everything but below FAB */
+    display: none; /* Hidden by default, shown by JS */
+    flex-direction: column; /* For internal layout */
+    overflow-y: auto; /* Enable scrolling for content if it overflows max-height */
+    transform: translateY(20px); /* Initial slightly lower position for animation */
+    opacity: 0; /* Hidden for fade-in animation */
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.calculator-panel.active {
+    display: flex; /* Show when active */
+    transform: translateY(0); /* Move to final position */
+    opacity: 1; /* Fade in */
+}
+
+.calculator-panel .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s ease;
+}
+
+.calculator-panel .close-btn:hover {
+    color: var(--primary-color);
+}
+
+.calculator-panel h3 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.6em;
+}
+
+
+/* --- Styling for the Dollar Icon in Calculator Panel --- */
+#dollar-icon {
+    display: block; /* Ensures it takes up its own line and can be centered with margin auto */
+    margin: 0 auto 15px auto; /* Top & Bottom margin 0 for no whitespace, auto for left/right to center. Added 15px bottom for slight separation from heading. */
+    width: 60px; /* Adjust size as needed, keep aspect ratio with height: auto */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.calculator-panel .panel-tagline {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+
+.calculator-panel .calculator-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+}
+
+.calculator-panel .calculator-section h4 {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.calculator-panel .form-group {
+    margin-bottom: 15px;
+}
+
+.calculator-panel label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #555;
+    font-weight: 500;
+}
+
+.calculator-panel input[type="number"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+    -moz-appearance: textfield; /* Hide arrows for Firefox */
+}
+
+/* Hide spin buttons for Chrome, Safari, Edge */
+.calculator-panel input[type="number"]::-webkit-outer-spin-button,
+.calculator-panel input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.calculator-panel .calculator-results {
+    background-color: #e6f7ff; /* Light blue background for results */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #b3e0ff;
+    margin-top: 20px;
+}
+
+.calculator-panel .calculator-results h4 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    border-bottom: none; /* Remove border from result section h4 */
+}
+
+.calculator-panel .calculator-results p {
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.calculator-panel .calculator-results span {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.calculator-panel .calculator-results .total-estimated {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--dark-primary-color); /* A slightly darker blue for main total */
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed #b3e0ff;
+}
+
+.calculator-panel .disclaimer {
+    font-size: 0.8em;
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 600px) {
+    #calculator-fab {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    #calculator-fab img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .calculator-panel {
+        width: calc(100% - 40px); /* Full width minus padding */
+        left: 20px; /* Center it */
+        right: 20px;
+        bottom: 80px; /* Adjust bottom for smaller FAB */
+        max-height: 85vh; /* More height on smaller screens */
     }
 }

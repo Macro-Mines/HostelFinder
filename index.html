@@ -3,97 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Hostel</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>HostelFinder</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh; /* Make the body take up the full viewport height */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            background-color: #ffffff; /* Optional: A subtle background color */
+        }
+
+        #logo-container {
+            /* You can style the container for the logo if needed */
+            /* For example, you could add a max-width */
+            max-width: 200px; */
+        }
+
+        #logo {
+            /* Basic styling for the logo image */
+            max-width: 100%; /* Make sure it doesn't overflow its container */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Remove any default inline spacing */
+        }
+    </style>
+    <script>
+        // Redirect to home-page.html after 2 seconds
+        setTimeout(function() {
+            window.location.href = 'home-page.html';
+        }, 2500); // 2500 milliseconds = 2.5 seconds
+    </script>
 </head>
 <body>
-
-    <header>
-        <nav class="container">
-            <a href="index.html" class="logo">HostelFinder</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact-us.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <img id="hostelpic" src="hostel.jpg" alt="hostel">
-        <section id="find-hostel" class="hero">
-            <div class="hero-content">
-                <h1>Find Your Perfect Student Hostel</h1>
-                <p>Select your university to discover the best hostels in the area.</p>
-                <div class="search-container">
-                    <select id="university-select">
-                        <option value="" disabled selected>Select Your University</option>
-                        <option value="university-a">University of Delhi</option>
-                        <option value="university-b">University of Mumbai</option>
-                        <option value="university-c">Anna University</option>
-                        <option value="university-d">University of Calcutta</option>
-                    </select>
-                    <button class="btn-primary">Find Hostels</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="listings-and-filters container">
-            <div class="filters-section">
-                <h2>Filter Hostels</h2>
-
-                <div class="filter-group">
-                    <h3>Gender Specific</h3>
-                    <label><input type="checkbox" name="gender" value="Boys Only"> Boys Only</label>
-                    <label><input type="checkbox" name="gender" value="Girls Only"> Girls Only</label>
-                    <label><input type="checkbox" name="gender" value="Unisex"> Unisex</label>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Room Rent (₹)</h3>
-                    <div class="price-range">
-                        <input type="number" id="min-rent" placeholder="Min" min="0">
-                        <span>-</span>
-                        <input type="number" id="max-rent" placeholder="Max" min="0">
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Distance from University</h3>
-                    <input type="range" id="distance-slider" min="0" max="10" value="10" step="0.5">
-                    <p>Max Distance: <span id="distance-value"></span></p>
-                </div>
-
-                <div class="filter-group">
-                    <h3>Basic Services</h3>
-                    <label><input type="checkbox" name="service" value="AC"> AC</label>
-                    <label><input type="checkbox" name="service" value="Wi-Fi"> Wi-Fi</label>
-                    <label><input type="checkbox" name="service" value="Mess Food"> Mess Food</label>
-                    <label><input type="checkbox" name="service" value="Laundry Service"> Laundry</label>
-                </div>
-
-                <div class="filter-actions">
-                    <button id="apply-filters-btn" class="btn-primary">Apply Filters</button>
-                    <button id="clear-filters-btn" class="btn-secondary">Clear Filters</button>
-                </div>
-            </div>
-
-            <div class="hostel-listings">
-                <h2>Available Hostels</h2>
-                <div class="hostel-grid" id="hostel-grid">
-                    <p class="placeholder-text">Please select a university to see available hostels.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script src="main.js"></script>
+    <div id="logo-container">
+        <img id="logo" src="images/h.gif" alt="HostelFinder Logo">
+    </div>
 </body>
 </html>

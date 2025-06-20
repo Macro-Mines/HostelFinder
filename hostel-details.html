@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <header>
         <nav class="container">
-            <a href="index.html" class="logo">HostelFinder</a>
+            <a href="home-page.html" class="logo">HostelFinder</a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home-page.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact-us.html">Contact</a></li>
             </ul>
@@ -23,6 +24,7 @@
     <main class="container hostel-details-page">
         <section class="hostel-detail-section">
             <div id="hostel-detail-content" class="loading-state">
+                <img src="images/loading.gif" alt="loading" width="100px">
                 <p>Loading hostel details...</p>
             </div>
         </section>
@@ -33,7 +35,11 @@
             <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
         </div>
     </footer>
-
+    
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    
     <script src="hostel-details.js"></script>
+    
 </body>
 </html>
