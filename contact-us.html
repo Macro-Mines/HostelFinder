@@ -108,6 +108,44 @@
         </div>
         </div>
 </section>
+
+
+    <!-- Floating Action Button -->
+<button id="dev-fab" aria-label="Show Developer Card">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" stroke="#00e6d2" stroke-width="2" />
+        <path d="M8 13l3-3 3 3" stroke="#00e6d2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+</button>
+
+<!-- Business Card Modal -->
+<div id="dev-card-modal">
+    <div class="dev-card">
+        <button class="card-close" aria-label="Close">&times;</button>
+        <img class="dev-avatar" src="images/developer-profile.png" alt="Developer photo">
+        <div class="dev-info">
+            <h2 class="dev-name">ABHINAV RAJ</h2>
+            <p class="dev-title">Full Stack Developer</p>
+            <p class="dev-bio">
+                Passionate about building robust web solutions and crafting beautiful user experiences.
+            </p>
+            <ul class="dev-details">
+                <li><span>📧</span> <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+                <li><span>📞</span> <a href="tel:+1234567890">+1 234 567 890</a></li>
+                <li><span>📍</span> Hazaribagh, Jharkhand, India</li>
+            </ul>
+            <div class="dev-social">
+                <a href="https://www.instagram.com/macro_mines?igsh=bTJtOTY2cXhsejFk" target="_blank" title="Instagram">
+                    <img src="images/instagram.svg" alt="Instagram">
+                </a>
+                <a href="https://github.com/Macro-Mines" target="_blank" title="GitHub">
+                    <img src="images/github.svg" alt="GitHub">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    
     </main>
 
     <footer>
@@ -123,6 +161,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <script src="contact-us.js"></script>
+    <script src="developer-info.js"></script>
 
     
 </body>

@@ -199,5 +199,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Pre-fetch hostels in the background if preferred, but don't display until button click
     // Uncomment the line below if you want data to be ready faster, but it will still
     // be filtered/displayed only on "Find Hostels" button click.
-    //fetchHostels(); 
+    //fetchHostels();
+    
+    document.getElementById('find-hostels-btn').addEventListener('click', function() {
+    document.getElementById('move-to-hostel-listing').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('apply-filters-btn').addEventListener('click', function() {
+    document.getElementById('move-to-hostel-listing').scrollIntoView({ behavior: 'smooth' });
+    });
+    
+    
 });

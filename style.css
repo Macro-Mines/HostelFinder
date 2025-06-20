@@ -22,7 +22,9 @@
     --box-shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.15); A stronger shadow for hover effects
 } */
 
-
+html {
+  scroll-padding-top: 70px; /* Set this to match your fixed header's height */
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -2139,4 +2141,178 @@ footer {
         bottom: 80px; /* Adjust bottom for smaller FAB */
         max-height: 75vh; /* More height on smaller screens */
     }
+}
+
+
+
+
+
+/* Floating Action Button */
+#dev-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 3000;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #007bff99;
+  border: none;
+  box-shadow: 0 4px 24px #007bff99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+#dev-fab:hover {
+  box-shadow: 0 8px 42px #0a0a0a;
+  transform: scale(1.08);
+}
+
+#dev-fab svg {
+  display: block;
+}
+
+#dev-fab svg circle,
+#dev-fab svg path {
+  stroke: #ffffff;
+}
+
+/* Modal overlay */
+#dev-card-modal {
+  display: none;
+  position: fixed;
+  z-index: 4000;
+  inset: 0;
+  background: rgba(10, 14, 20, 0.74);
+  backdrop-filter: blur(2px);
+  align-items: center;
+  justify-content: center;
+}
+
+/* Show modal */
+#dev-card-modal.open {
+  display: flex;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Business Card */
+.dev-card {
+  background: #212432;
+  color: #e6f1fa;
+  border-radius: 22px;
+  box-shadow: 0 8px 40px #007bff22, 0 2px 10px #000a;
+  width: 330px;
+  max-width: 92vw;
+  padding: 32px 22px 22px 22px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #007bff44;
+}
+
+.card-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  font-size: 2.1rem;
+  color: #007bff;
+  cursor: pointer;
+  transition: color 0.16s;
+}
+
+.card-close:hover { color: #fff; }
+
+.dev-avatar {
+  width: 80px;
+  height: 80px;
+  
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 14px;
+  border: 2.5px solid #007bffcc;
+  box-shadow: 0 0 16px #007bff66;
+}
+
+.dev-info {
+  text-align: center;
+  width: 100%;
+}
+
+.dev-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #007bff;
+  margin: 6px 0 3px 0;
+  letter-spacing: 1px;
+}
+
+.dev-title {
+  font-size: 1.05rem;
+  color: #8fbdf0;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.dev-bio {
+  font-size: 0.99rem;
+  color: #c8d4e3;
+  margin-bottom: 13px;
+}
+
+.dev-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 0.98rem;
+  color: #8fbdf0;
+  text-align: left;
+}
+
+.dev-details li {
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dev-details a {
+  color: #007bff;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.dev-details a:hover { text-decoration: underline; }
+
+.dev-social {
+  margin-top: 10px;
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+}
+
+.dev-social img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 8px #007bffcc);
+  transition: filter 0.18s, transform 0.18s;
+}
+
+.dev-social a:hover img {
+  transform: scale(1.11);
+}
+
+@media (max-width: 450px) {
+  .dev-card { padding: 14px 2vw 12px 2vw; }
+  .dev-avatar { width: 60px; height: 60px; }
 }
