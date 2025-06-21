@@ -1851,6 +1851,7 @@ footer {
 
 #review-message {
     text-align: center;
+    font-size: 1em;
 }
 
 .display-reviews-section h2 {
@@ -1901,13 +1902,15 @@ footer {
 .review-card h3 {
     font-size: 1.2em;
     color: var(--primary-color);
-    /* margin-bottom: 2px; */
+    line-height: 0px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
 }
 
 .review-card .university {
     font-size: 0.9em;
     color: #777;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 }
 
 .review-card p {

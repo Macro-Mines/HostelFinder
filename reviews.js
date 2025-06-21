@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 timestamp: firebase.firestore.FieldValue.serverTimestamp() // Firestore timestamp
             });
 
-            reviewMessage.innerHTML = `<img src="images/success.gif" alt="Success" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 8px;"> Your review has been submitted successfully!`;
+            reviewMessage.innerHTML = `<img src="images/success.gif" alt="Success" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 8px;"> Your review has been submitted successfully!`;
             reviewMessage.style.color = 'green';
             reviewForm.reset(); // Clear the form
 
