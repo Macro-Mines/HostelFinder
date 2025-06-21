@@ -1859,7 +1859,6 @@ footer {
 }
 
 #review-cards-container {
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -1902,7 +1901,6 @@ footer {
 .review-card h3 {
     font-size: 1.2em;
     color: var(--primary-color);
-    line-height: 0px;
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
@@ -1910,6 +1908,7 @@ footer {
 .review-card .university {
     font-size: 0.9em;
     color: #777;
+    margin-top: 0px;
     margin-bottom: 5px;
 }
 
