@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const addHostelForm = document.getElementById('add-hostel-form');
     const addHostelMessage = document.getElementById('add-hostel-message');
     const ownerFacilityCheckboxes = document.querySelectorAll('.owner-facility-checkbox');
-    // NEW: Select all room capacity checkboxes by their class
+    // Select all room capacity checkboxes by their class
     const ownerRoomCapacityCheckboxes = document.querySelectorAll('.owner-room-capacity-checkbox');
 
 
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .filter(checkbox => checkbox.checked)
             .map(checkbox => checkbox.value);
 
-        // NEW: Collect selected room capacities from checkboxes
+        // Collect selected room capacities from checkboxes
         const roomCapacity = Array.from(ownerRoomCapacityCheckboxes)
             .filter(checkbox => checkbox.checked)
             .map(checkbox => checkbox.value);
@@ -86,8 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            //initial db 'hostels'
-            const docRef = await db.collection('testHostels').add(newHostelData);
+            const docRef = await db.collection('ownerHostelsSubmission').add(newHostelData);
             addHostelMessage.innerHTML = `<img src="images/success.gif" alt="Success" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 8px;"> Hostel "${hostelName}" added successfully!`;
 
             addHostelMessage.style.color = 'green';

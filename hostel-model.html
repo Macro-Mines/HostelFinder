@@ -57,7 +57,8 @@
         // --- AUTO ROTATE ---
         controls.autoRotate = true;
         controls.autoRotateSpeed = 1.5; // adjust as you like
-
+        
+        
         // Disable X-axis rotation (polar angle)
         const polar = controls.getPolarAngle();
         controls.minPolarAngle = polar;
@@ -68,6 +69,7 @@
         renderer.domElement.addEventListener('wheel', function(event) {
             renderer.domElement.blur && renderer.domElement.blur();
         }, { passive: true });
+
 
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/libs/draco/gltf/');

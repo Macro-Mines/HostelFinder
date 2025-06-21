@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 hostelListing.classList.add('loading-state');
             }
 
-            // initial db 'hostels'
-            const snapshot = await db.collection('testHostels').get();
+            // hazaribagh db 'hazaribagh-hostels'
+            const snapshot = await db.collection('hostels').get();
             allHostels = snapshot.docs.map(doc => ({
                 id: doc.id, // Firestore document ID
                 ...doc.data()

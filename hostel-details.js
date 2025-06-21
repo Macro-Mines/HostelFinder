@@ -34,8 +34,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             hostelDetailContent.innerHTML = '<img src="images/loading.gif" alt="loading" width="100px"><p class="loading-message">Loading hostel details...</p>';
             hostelDetailContent.classList.add('loading-state');
 
-            // Fetch the specific hostel document from Firestore 'hostels'
-            const docRef = db.collection('testHostels').doc(hostelId);
+            // Fetch the specific hostel document from Firestore 
+            // hazaribagh db 'hazaribagh-hostels'
+            const docRef = db.collection('hostels').doc(hostelId);
             const docSnap = await docRef.get();
 
             if (docSnap.exists) {

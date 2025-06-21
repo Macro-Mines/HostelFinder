@@ -14,7 +14,7 @@
         <nav class="container">
             <a href="home-page.html" class="logo">HostelFinder</a>
             <ul class="nav-links">
-                <li><a href="home-page.html">Home</a></li>
+                <li><a href="home-page.html#find-hostel">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact-us.html">Contact</a></li>
             </ul>
@@ -29,13 +29,21 @@
                 <h1>Find Your Perfect Student Hostel</h1>
                 <p>Select your university to discover the best hostels in the area.</p>
                 <div class="search-container">
-                    <select id="university-select">
+                    <select id="university-select" required>
                         <option value="" disabled selected>Select Your University</option>
                         <option value="university-v">Vinoba Bhave University</option>
                         <option value="university-a">University of Delhi</option>
                         <option value="university-b">University of Mumbai</option>
                         <option value="university-c">Anna University</option>
                         <option value="university-d">University of Calcutta</option>
+                        <!-- <option value="university-vbu">Vinoba Bhave University</option>
+                        <option value="college-annanda">Annanda College</option>
+                        <option value="college-columbas">St. Columba's College</option>
+                        <option value="college-kbwomen">KB Women's College</option>
+                        <option value="government-polytechnic">Government Polytechnic</option>
+                        <option value="university-aisect">AISECT University</option>
+                        <option value="college-markham">Markham College of Commerce</option>
+                        <option value="college-interscience">Inter Science College</option> -->
                     </select>
                     <button id="find-hostels-btn" class="btn-primary">Find Hostels</button>
                 </div>
@@ -99,7 +107,6 @@
         <section class="owner-cta-section">
             <div class="container">
                 <div class="owner-cta-content">
-                    <!-- <img id="hostelpic" src="images/hostel-2.jpg" alt="hostel"> -->
                     <img src="images/old-man.png" alt="owner-png" width="120px">
                     <h2>Are you a Hostel Owner?</h2>
                     <p>List your hostel on HostelFinder and connect with thousands of students looking for accommodation.</p>

@@ -13,7 +13,7 @@
         <nav class="container">
             <a href="home-page.html" class="logo">HostelFinder</a>
             <ul class="nav-links">
-                <li><a href="home-page.html">Home</a></li>
+                <li><a href="home-page.html#find-hostel">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact-us.html">Contact</a></li>
             </ul>
@@ -41,12 +41,20 @@
                     <div class="form-group">
                         <label for="owner-university-id">Associated University</label>
                         <select id="owner-university-id" required>
-                            <option value="">-- Select University --</option>
+                            <option value="" disabled selected>Select Your University</option>
                             <option value="university-v">Vinoba Bhave University</option>
                             <option value="university-a">University of Delhi</option>
                             <option value="university-b">University of Mumbai</option>
                             <option value="university-c">Anna University</option>
                             <option value="university-d">University of Calcutta</option>
+                            <!-- <option value="university-vbu">Vinoba Bhave University</option>
+                            <option value="college-annanda">Annanda College</option>
+                            <option value="college-columbas">St. Columba's College</option>
+                            <option value="college-kbwomen">KB Women's College</option>
+                            <option value="government-polytechnic">Government Polytechnic</option>
+                            <option value="university-aisect">AISECT University</option>
+                            <option value="college-markham">Markham College of Commerce</option>
+                            <option value="college-interscience">Inter Science College</option> -->
                         </select>
                     </div>
                     <div class="form-group">
@@ -109,7 +117,7 @@
                     </div>
                     <div class="form-group">
                         <label for="owner-phone">Your Phone Number</label>
-                        <input type="tel" id="owner-phone" pattern="^\d{10}$"  title="Please enter a 10-digit phone number (e.g., 9876543210)" required>
+                        <input type="tel" id="owner-phone" pattern="[6-9]\d{9}" title="Please enter a valid 10-digit Indian phone number." required>
                     </div>
                     <div class="form-group">
                         <label for="owner-email">Your Email</label>
