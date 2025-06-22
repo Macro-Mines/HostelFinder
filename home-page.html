@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Your Hostel</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -36,14 +37,6 @@
                         <option value="university-b">University of Mumbai</option>
                         <option value="university-c">Anna University</option>
                         <option value="university-d">University of Calcutta</option>
-                        <!-- <option value="university-vbu">Vinoba Bhave University</option>
-                        <option value="college-annanda">Annanda College</option>
-                        <option value="college-columbas">St. Columba's College</option>
-                        <option value="college-kbwomen">KB Women's College</option>
-                        <option value="government-polytechnic">Government Polytechnic</option>
-                        <option value="university-aisect">AISECT University</option>
-                        <option value="college-markham">Markham College of Commerce</option>
-                        <option value="college-interscience">Inter Science College</option> -->
                     </select>
                     <button id="find-hostels-btn" class="btn-primary">Find Hostels</button>
                 </div>
@@ -199,11 +192,37 @@
         <p class="disclaimer">Estimates only. Actual costs may vary.</p>
     </div>
     
+    
+    
+    <!-- CHAT - BOT -->
+<button id="chatbot-fab">
+    <img src="images/chatbot.png" alt="Chat with us">
+</button>
+
+<div id="chatbot-modal" class="modal">
+    <div class="chatbot-content"> <!-- Changed from modal-content to chatbot-content -->
+        <div class="chat-header">
+            <h3>HostelFinder Chat</h3>
+            <span class="close-button">&times;</span>
+        </div>
+        <div class="chat-messages">
+            <div class="message bot-message">Hello! How can I help you today?</div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button id="send-button">
+                <img src="images/send-icon.svg" alt="Send"> </button>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+    
+    
     <script src="calculator.js"></script>
-    
-    
-    
-    
+    <script src="chatbot.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>    
 
