@@ -1,407 +1,510 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const chatbotFab = document.getElementById('chatbot-fab');
-    const chatbotModal = document.getElementById('chatbot-modal');
-    const closeButton = document.querySelector('#chatbot-modal .close-button');
-    const chatMessagesContainer = document.querySelector('.chat-messages');
-    const userInput = document.getElementById('user-input');
-    const sendButton = document.getElementById('send-button');
+  const chatbotFab = document.getElementById('chatbot-fab');
+  const chatbotModal = document.getElementById('chatbot-modal');
+  const closeButton = document.querySelector('#chatbot-modal .close-button');
+  const chatMessagesContainer = document.querySelector('.chat-messages');
+  const userInput = document.getElementById('user-input');
+  const sendButton = document.getElementById('send-button');
+  const clearChatButton = document.getElementById('clear-chat');
+  
+  const knowledgeBase = [
+    // GREETINGS
+    {
+        questions: [
+            "hi", "hello", "hey", "namaste", "namaskar", "ram ram", "good morning", "good evening", "good night",
+            "kaise ho", "kya haal hai", "salaam", "pranam", "haanji", "helo", "heloo", "helloo", "heloo", "hii", "hyy", "namste", "namasthe", "namestey"
+        ],
+        answer: "Namaste! Welcome to HostelFinder. How can I help you today?"
+    },
 
-    // --- Knowledge Base ---
-    const knowledgeBase = [
-        {
-            questions: ["hi", "hello", "hey"],
-            answer: "Hello! How can I help you today?"
-        },
-        {
-            questions: ["search","how to search", "find hostel", "search for accommodation"],
-            answer: "To search for a hostel, go to the 'Home' page and use the search bar. You can filter by location, price, and amenities!"
-        },
-        {
-            questions: ["what is this website", "what is hostel finder", "about you"],
-            answer: "HostelFinder helps students and travelers find suitable hostel accommodations near universities."
-        },
-        {
-            questions: ["how to list my hostel", "add my hostel", "owner portal"],
-            answer: "If you are a hostel owner, you can list your property by visiting the 'Owner' page and filling out the details there."
-        },
-        {
-            questions: ["what is expense calculator", "calculate cost", "hostel cost"],
-            answer: "Our expenses calculator helps you estimate the potential costs of staying in a hostel, including rent and other utilities."
-        },
-        {
-            questions: ["how to contact", "contact support", "get in touch"],
-            answer: "You can reach us through the 'Contact Us' page on our website, where you'll find our email and phone number."
-        },
-        {
-            questions: ["can I leave a review", "how to review hostel", "write review"],
-            answer: "Yes, you can leave a review! Visit the 'Reviews' section to share your experience."
-        },
-        {
-            questions: ["thank you", "thanks", "ok", "cool"],
-            answer: "You're welcome! Feel free to ask if you have more questions."
-        },
+    // YES/NO responses
+    {
+        questions: [
+            "yes", "haan", "ha", "hanji", "haanji", "sahi hai", "ok", "theek hai", "sure", "bilkul", "thik hai", "ho jayega", "kar do", "done", "yes please", "yep", "ya"
+        ],
+        answer: "Great! Let me know if you need any more help or information."
+    },
+    {
+        questions: [
+            "no", "nahi", "nahin", "nhi", "nope", "not now", "chhodo", "chhod do", "cancel", "not interested", "abhi nahi", "nopes", "nah"
+        ],
+        answer: "No problem! If you need anything else, just ask."
+    },
 
+    // THANK YOU & POLITE
     {
-        questions: ["select university", "choose university", "university search"],
-        answer: "On the Home page, simply use the 'Select Your University' dropdown to choose your institution and find nearby hostels."
+        questions: [
+            "thank you", "thanks", "shukriya", "dhanyawad", "bahut dhanyavaad", "thanks alot", "thanku", "thankyou", "thanku so much", "bahut shukriya", "bahut accha"
+        ],
+        answer: "You're welcome! If you have more questions, just ask."
+    },
+
+    // SEARCH HOSTEL
+    {
+        questions: [
+            "how to search", "how do i search", "search hostel", "find hostel", "hostel kaise dhundhu", "kaise search karein",
+            "hostel kaise milega", "accommodation kaise dhoondein", "hostel kaise find kare", "mujhe hostel chahiye",
+            "hostel chaiye", "room chahiye", "hostel search karna hai", "hostel ka pata kaise chalega",
+            "hostel dhoondh do", "hostel search", "hostal kaise dhundhu", "hostel kaise dhundho", "hostel kaise dhoonde"
+        ],
+        answer: "To search for a hostel, go to the Home page and use the search bar. You can filter by city, location, price, and facilities. Agar aapko madad chahiye filtering mein, bataiye!"
     },
     {
-        questions: ["what universities", "list universities", "available universities"],
-        answer: "We currently support searching for hostels near Vinoba Bhave University, University of Delhi, University of Mumbai, Anna University, and University of Calcutta."
+        questions: [
+        "about", "about you", "about hostel finder", "about this site", "about this website", "about this app",
+        "tum kaun ho", "aap kaun ho", "yeh kaunsi site hai", "yeh app kya hai", "yeh site kisliye hai", "why this website",
+        "hostel finder ke bare me batao", "hostel finder kya hai", "hostel finder ke baare mein"
+        ],
+        answer: "Main ek chatbot hoon jo HostelFinder par aapki madad karta hoon. HostelFinder ek platform hai jo students aur travellers ke liye hostels dhoondhna bahut aasan bana deta hai—yahan aap compare, review, aur details dekh sakte hain, sab kuch ek jagah par."
     },
+
+    // ABOUT WEBSITE
     {
-        questions: ["filter by gender", "gender specific hostel", "boys only", "girls only", "unisex hostel"],
-        answer: "Yes, you can filter hostels by gender specificity! Look for the 'Gender Specific' filter group to choose 'Boys Only', 'Girls Only', or 'Unisex' options."
+        questions: [
+            "website", "hostel finder kya hai", "what is hostel finder", "about hostel finder", "ye website kya hai",
+            "hostel finder kya karta hai", "aap kaun ho", "what do you do", "kya karte ho", "aap kya karte ho", "hostelfinder kya hai",
+            "hostel finder site ka kya kaam hai", "ye kisliye hai", "is site ka fayda kya hai"
+        ],
+        answer: "HostelFinder helps students and travellers find, compare, and review hostels easily. Sabhi info ek jagah milti hai!"
     },
+
+    // LIST HOSTEL (OWNER)
     {
-        questions: ["room rent filter", "price range", "min rent", "max rent", "budget for hostel"],
-        answer: "Under 'Filter Hostels', you'll find 'Room Rent (₹)'. You can enter your desired minimum and maximum rent to narrow down options within your budget."
+        questions: [
+            "list my hostel", "add hostel", "apna hostel kaise dale", "owner portal kaise use kare",
+            "list my property", "apni property kaise dale", "hostel owner kaise banein", "hostel register kaise kare",
+            "mera hostel add karna hai", "hostel kaise register karein", "hostel owner kaise bane", "hostal add karna hai", "hostel add karna hai"
+        ],
+        answer: "Agar aap owner hain, toh 'Owner' page par jaakar hostel details fill karein, bas! Verification ke baad listing live ho jayegi."
     },
+
+    // EXPENSE CALCULATOR
     {
-        questions: ["filter by distance", "distance from university"],
-        answer: "Use the 'Distance from University' slider in the filters section to set your preferred maximum distance from the university campus."
+        questions: [
+            "expense calculator", "calculate cost", "hostel ka kharcha", "kharcha kitna hoga", "budget planner",
+            "expenses calculator", "budget kaise banaye", "cost estimate", "hostel estimate", "kitna kharcha aayega", "expence calculator", "kharcha calculator", "hostel ka kharcha batao"
+        ],
+        answer: "Use our expense calculator on the website to estimate rent, food, and other hostel expenses. Aap apne hisaab se sab details dal sakte hain."
     },
+
+    // CONTACT SUPPORT
     {
-        questions: ["basic services", "amenities filter", "ac", "wi-fi", "mess food", "laundry", "laundry service"],
-        answer: "Absolutely! You can filter by 'Basic Services' like AC, Wi-Fi, Mess Food, and Laundry Service to find hostels with the amenities you need."
+        questions: [
+            "how to contact", "contact support", "get in touch", "contact number", "support kaise milega", "phone number", "kaise sampark kare",
+            "madad chahiye", "support", "help chahiye", "contact us", "kaise baat kare", "kaise contact karein", "support number", "contact details", "help desk"
+        ],
+        answer: "Contact karne ke liye website ke 'Contact Us' page pe jao, wahan email aur phone number mil jayega. Hum jaldi reply karte hain!"
     },
+
+    // LEAVE REVIEW
     {
-        questions: ["apply filters", "clear filters"],
-        answer: "After selecting your filters, click 'Apply Filters' to see updated results. If you want to start fresh, hit 'Clear Filters'."
+        questions: [
+            "leave a review", "review kaise du", "feedback kaise de", "review likhna hai", "apna review dalna hai",
+            "hostel pe review kaise likhu", "review dena hai", "rate karna hai", "experience share karna hai", "feedback dena hai"
+        ],
+        answer: "Bilkul! 'Reviews' section ya hostel detail page par jaake review likh sakte hain."
     },
+
+    // UNIVERSITY SELECTION & LIST
     {
-        questions: ["what is 3d model", "hostel model", "3d hostel", "interactive hostel", "threejs"],
-        answer: "That's our 3D visualizer! It's a cool feature where you can interact with a 3D model of a typical hostel layout to get a feel for the space."
+        questions: [
+            "select university", "choose university", "university kaise select kare", "university search", "university kaise dhoonde", "universities list", "universities available", "universities ki list", "konsi universities", "kaun si university hai"
+        ],
+        answer: "Home page pe 'Select Your University' dropdown se apni university choose karo. Hum currently Vinoba Bhave University, DU, Mumbai University, Anna University, aur Calcutta University support karte hain."
     },
+
+    // GENDER FILTER
     {
-        questions: ["what amenities", "hostel features"],
-        answer: "Hostel listings typically include details on amenities like Wi-Fi, AC, mess food, laundry service, security, and more. Check the 'Basic Services' filter for common options."
+        questions: [
+            "filter by gender", "gender hostel", "boys hostel", "girls hostel", "unisex hostel", "ladko ke liye hostel", "ladkiyo ke liye hostel", "gender specific hostel", "ladkiyon ka hostel", "ladko ka hostel"
+        ],
+        answer: "Filters mein 'Gender' select karo: Boys Only, Girls Only, ya Unisex. Apne hisaab se hostel mil jayega."
     },
+
+    // RENT FILTER
     {
-        questions: ["what is owner portal", "list my hostel", "hostel owner"],
-        answer: "If you're a hostel owner, you can list your property on HostelFinder by visiting the 'Owner' page. It's a great way to connect with students!"
+        questions: [
+            "room rent filter", "price range", "min rent", "max rent", "hostel rent", "budget hostel", "kam daam ka hostel", "sasta hostel", "rent kitna hai", "kitne ka hostel hai", "hostel rent batao"
+        ],
+        answer: "Rent ke hisaab se filter lagane ke liye 'Room Rent (₹)' option use karo. Minimum aur maximum rent daal sakte ho."
     },
+
+    // DISTANCE FILTER
     {
-        questions: ["expenses estimator", "budget tool", "cost planner"],
-        answer: "The Hostel Expense Estimator helps you plan your budget. You can input one-time setup costs and monthly recurring costs like rent, food, and utilities."
+        questions: [
+            "filter by distance", "distance from university", "university se kitne door", "distance filter", "hostel kitni door hai", "kitna distance hai", "kitni duri hai", "university distance"
+        ],
+        answer: "Filters mein 'Distance from University' slider use karo, jitna door chahiye set kar lo."
     },
+
+    // AMENITIES
     {
-        questions: ["bargain rent", "negotiate rent", "discount on hostel"],
-        answer: "I'm just a chatbot, not a master negotiator! You'd have to talk directly with the hostel management for any rent bargaining. Good luck!"
+        questions: [
+            "basic services", "amenities filter", "ac hostel", "wifi hostel", "mess food", "laundry", "laundry service", "facilities", "hostel mein kya kya hai", "hostel mein kya milta hai", "hostel facilities", "kya amenities hain"
+        ],
+        answer: "Filter by amenities like AC, Wi-Fi, Mess Food, Laundry etc. Listings mein sab detail mil jayega."
     },
+
+    // APPLY/CLEAR FILTERS
     {
-        questions: ["will you find my lost sock", "lost sock"],
-        answer: "I'm great at finding hostels, but lost socks are beyond my current capabilities. Maybe check under your bed in your new hostel? 😉"
+        questions: [
+            "apply filters", "clear filters", "filter kaise lagaye", "filter hatana hai", "filters ka use kaise kare", "filter lagane ka tarika", "filter remove kaise kare"
+        ],
+        answer: "Filters select karke 'Apply Filters' dabao. Sab remove karna hai toh 'Clear Filters' use karo."
     },
+
+    // 3D MODEL
     {
-        questions: ["what problem does hostel finder solve", "problem solved", "why hostel finder exists"],
-        answer: "HostelFinder solves the problem of scattered listings, limited transparency, time constraints, and distance barriers in finding student hostels."
+        questions: [
+            "3d model", "hostel 3d model", "3d hostel", "interactive hostel", "threejs", "hostel ka 3d view", "hostel ka naksha", "3d dekhna hai", "hostel ka 3d map", "hostel ka 3d layout"
+        ],
+        answer: "3D visualizer feature mein aap typical hostel ka layout dekh sakte hain, explore kar sakte hain."
     },
+
+    // INFORMATION IN LISTING
     {
-        questions: ["why use hostel finder", "benefits of hostel finder", "how hostel finder helps"],
-        answer: "HostelFinder offers comprehensive search and filters, detailed and transparent listings, a user-friendly experience, a focus on student needs, and verified reviews."
+        questions: [
+            "hostel amenities", "hostel features", "hostel mein kya milta hai", "listing mein kya details hain", "hostel mein kya diya hai", "listing transparency", "hostel ki details", "hostel ki jankari"
+        ],
+        answer: "Har listing mein amenities (AC, Wi-Fi, Mess, Laundry), room type, rent, distance, photos, aur owner contact diya hota hai."
     },
+
+    // OWNER DASHBOARD & UPDATES
     {
-        questions: ["what information is in hostel listings", "hostel details", "listing transparency"],
-        answer: "Each hostel profile provides in-depth information including location, room types, amenities, and direct contact details for owners."
+        questions: [
+            "owner portal", "owner dashboard", "list my hostel", "hostel owner", "property owner", "apna hostel list kare", "owner page", "hostel owner kaise bane", "update hostel details", "owner update details", "change hostel info", "hostel info update karni hai"
+        ],
+        answer: "Owner ke liye 'Owner' page par jao. Update ke liye abhi support team ko contact karo, jaldi hi owner dashboard aayega."
     },
+
+    // EXPENSES ESTIMATOR
     {
-        questions: ["is hostel finder easy to use", "user friendly experience"],
-        answer: "Yes, HostelFinder has an intuitive interface designed with students in mind, making the search process straightforward and stress-free."
+        questions: [
+            "expenses estimator", "budget tool", "cost planner", "budget estimate", "kharcha calculator", "hostel ka budget tool", "expense estimator"
+        ],
+        answer: "Hostel Expense Estimator se rent, food, aur monthly kharche ka estimate nikal sakte ho."
     },
+
+    // BARGAINING
     {
-        questions: ["does hostel finder focus on students", "student needs", "for students"],
-        answer: "Yes, our platform prioritizes factors crucial for academic success and comfortable living, understanding the unique requirements of students."
+        questions: [
+            "bargain rent", "negotiate rent", "discount hostel", "kya rent kam ho sakta hai", "rent kam karwa sakte hai", "rent mein discount", "hostel mein negotiation", "rent negotiate"
+        ],
+        answer: "Aap directly hostel owner se baat karke negotiation try kar sakte hain. HostelFinder rent fix nahi karta."
     },
+
+    // LOST AND FOUND (FUN)
     {
-        questions: ["can hostel owners list easily", "effortless listing for owners"],
-        answer: "Hostel owners can easily list and manage their properties through a dedicated dashboard with a simplified submission process."
+        questions: [
+            "lost sock", "i lost my sock", "kya aap lost and found dekhte ho", "kuch kho gaya", "mera bag kho gaya", "mera phone kho gaya"
+        ],
+        answer: "Sorry, main sirf hostel dhoondh sakta hoon, lost and found mein help nahi kar sakta. Hostel mein staff se poocho!"
     },
+
+    // PROBLEM STATEMENT / WHY HOSTELFINDER
     {
-        questions: ["are there reviews on hostel finder", "verified reviews", "community insights"],
-        answer: "Yes, the platform features genuine reviews and ratings from past and current residents to help you make informed decisions."
+        questions: [
+            "hostel finder ka fayda", "problem solved", "why hostel finder exists", "problem solved by hostel finder", "hostel finder kyun", "fayda kya hai", "kya problem solve karta hai"
+        ],
+        answer: "HostelFinder sabhi hostel ki info ek jagah deta hai, search aur compare easy banaata hai, verified reviews milte hain."
     },
+
+    // EASE OF USE
     {
-        questions: ["what is hostel finder's mission", "mission statement"],
-        answer: "Our mission is to empower students and their families with the tools and information to make confident decisions about accommodation, supporting a successful academic journey."
+        questions: [
+            "is hostel finder easy", "user friendly", "kya easy hai", "use karne mein aasan hai kya", "hostel finder use karna easy hai kya", "kya ye easy hai"
+        ],
+        answer: "Bilkul! HostelFinder students ke liye bana hai, use karna bahut simple hai."
     },
+
+    // STUDENT FOCUSED
     {
-        questions: ["what is the problem with finding hostels", "challenges in finding hostels"],
-        answer: "Common challenges include a lack of centralized information, limited transparency, time constraints during admissions, and distance barriers for research."
+        questions: [
+            "student focus", "student ke liye hai", "student needs", "for students", "ye students ke liye hai kya", "student friendly hai kya"
+        ],
+        answer: "Haan, HostelFinder specially students ke liye hi design kiya gaya hai."
     },
+
+    // OWNER LISTING EASY
     {
-        questions: ["how do i search for a hostel", "search a hostel", "how to find a hostel"],
-        answer: "To search for a hostel, select your university on the homepage and click 'Find Hostels'. You can then use filters for gender, rent, distance, and facilities to narrow your search."
+        questions: [
+            "owner listing easy", "owner listing process", "hostel owner ka process", "hostel owner listing", "owner listing kaise kare"
+        ],
+        answer: "Owner ke liye listing process bahut aasan hai, sirf ek form fill karo aur verification ke baad live ho jayega."
     },
+
+    // REVIEWS
     {
-        questions: ["is hostel finder free to use", "cost of hostel finder", "do i pay to use hostel finder"],
-        answer: "Yes, HostelFinder is completely free for students to use. There are no hidden charges or subscription fees."
+        questions: [
+            "reviews", "reviews on hostel finder", "verified reviews", "community insights", "kya review milte hain", "hostel review", "review kaise dekhen"
+        ],
+        answer: "Haan, aap genuine reviews dekh aur likh sakte hain. Har hostel page par review section hota hai."
     },
+
+    // MISSION
     {
-        questions: ["how can hostel owners list property", "list my hostel", "hostel owner listing process"],
-        answer: "Hostel owners can easily list properties by visiting the 'Owner' section from the homepage, filling a simple form. It will be added after verification."
+        questions: [
+            "hostel finder mission", "mission statement", "hostel finder ka mission", "aapka mission", "mission kya hai"
+        ],
+        answer: "Mission hai ki har student ko sahi aur safe hostel mil sake, bina tension ke."
     },
+
+    // FINDING HOSTELS PROBLEMS
     {
-        questions: ["what info is in hostel listing", "hostel listing details", "what details are provided"],
-        answer: "Each listing includes name, location, distance from university, gender specific, rent range, room capacities (Single, Double, Triple), facilities (AC, Wi-Fi, Mess, Laundry), and direct owner contact."
+        questions: [
+            "finding hostels problem", "hostel dhoondne mein dikkat", "challenges in finding hostels", "kya problem aati hai", "hostel dhoondhna mushkil hai", "problem in finding hostel"
+        ],
+        answer: "Jyada info nahi milti, transparency nahi hoti, time kam hota hai. Hum yeh sab solve karte hain."
     },
+
+    // IS IT FREE
     {
-        questions: ["how accurate is distance", "distance accuracy", "is distance exact"],
-        answer: "The distances are approximate, meant to give a general idea. We recommend verifying the exact distance and commute time directly with the hostel owner."
+        questions: [
+            "is hostel finder free", "cost of hostel finder", "kya paise lagte hai", "free hai kya", "charge lagta hai", "hostel finder charges", "payment lagta hai"
+        ],
+        answer: "HostelFinder students ke liye bilkul free hai. Koi hidden charges nahi hain."
     },
+
+    // OWNER LISTING PROCESS
     {
-        questions: ["can i contact hostel owner directly", "direct contact to owner", "owner contact details"],
-        answer: "Yes, every hostel listing provides the owner's contact name, phone number, and email address for direct inquiries and bookings."
+        questions: [
+            "owner listing", "hostel owner listing", "hostel owner kaise list kare", "property listing", "owner listing process", "hostel listing process"
+        ],
+        answer: "Owner 'Owner' page par listing form bharein, verification ke baad property list ho jayegi."
     },
+
+    // HOSTEL LISTING DETAILS
     {
-        questions: ["outdated information", "incorrect listing details", "report outdated info"],
-        answer: "If you find outdated or incorrect information, please report it via the 'Contact Us' page, and we will rectify it promptly."
+        questions: [
+            "hostel listing details", "listing details", "hostel mein kya milta hai", "hostel ke details", "hostel ki jankari"
+        ],
+        answer: "Listing mein name, location, distance, gender, rent, room type, amenities, owner contact sab hota hai."
     },
+
+    // DISTANCE ACCURACY
     {
-        questions: ["hostels for boys and girls", "gender specific hostels", "unisex hostels"],
-        answer: "Yes, our platform includes 'Boys Only', 'Girls Only', and 'Unisex' hostels. You can filter your search based on gender specificity."
+        questions: [
+            "distance accuracy", "kitni door hai", "distance kitna hai", "distance exact hai kya", "kitna door hai", "distance kaise pata chalega"
+        ],
+        answer: "Website pe jo distance hai wo approximate hai, exact distance ke liye owner se confirm kar lo."
     },
+
+    // CONTACT OWNER
     {
-        questions: ["how often new hostels added", "new listings frequency"],
-        answer: "We continuously expand our network. New hostels are added regularly as owners register and pass our verification process."
+        questions: [
+            "contact owner", "owner se baat kar sakte hai", "owner contact details", "hostel owner contact", "owner se baat karna hai", "owner ka number"
+        ],
+        answer: "Har listing mein owner ka naam, phone aur email diya hota hai. Directly contact kar sakte ho."
     },
+
+    // OUTDATED INFO
     {
-        questions: ["how to update my hostel details", "owner update details", "change hostel info"],
-        answer: "Currently, for updates to existing listings, please contact our support team directly via the 'Contact Us' page, providing your hostel's name and the details you wish to change. We are working on an owner dashboard."
+        questions: [
+            "outdated info", "incorrect info", "galat information", "report outdated info", "galat details report kare", "wrong listing", "info galat hai"
+        ],
+        answer: "Agar info galat ho toh 'Contact Us' page se report karo. Hum jaldi update karenge."
     },
+
+    // GENDER HOSTELS
     {
-        questions: ["developer", "who made this website", "kisne banaya ye"],
-        answer: "ABHINAV RAJ student of BCA,Vinoba Bhave University."
+        questions: [
+            "hostels for boys and girls", "gender specific hostels", "boys hostel", "girls hostel", "unisex hostel", "ladkiyon ke hostel", "ladko ke hostel"
+        ],
+        answer: "Aapko boys, girls ya unisex hostel mil jayenge. Gender filter use karo."
     },
+
+    // NEW HOSTELS
+    {
+        questions: [
+            "new hostels", "new listings", "naye hostel", "naye hostels add hote hai kya", "latest hostels", "newly added hostel"
+        ],
+        answer: "Naye hostels regular basis pe add hote hain jab owners register karte hain."
+    },
+
+    // UPDATE HOSTEL DETAILS
+    {
+        questions: [
+            "update hostel details", "owner update details", "change hostel info", "hostel info update karni hai", "hostel update", "listing update", "hostel detail change karna hai"
+        ],
+        answer: "Update ke liye abhi contact support team. Jaldi hi owner dashboard aayega jahan aap khud update kar sakte hain."
+    },
+
+    // DEVELOPER INFO
+    {
+        questions: [
+            "developer", "who made this website", "kisne banaya", "developer kaun hai", "banane wale kaun hain", "is site ko kisne banaya"
+        ],
+        answer: "HostelFinder banaya hai Abhinav Raj ne, BCA student, Vinoba Bhave University."
+    },
+
+    // BAD LANGUAGE / ABUSE
+    {
+        questions: [
+            "bad language", "gali", "abusive", "slang", "sala", "kutta", "mc bc", "harami", "tum bekar hai", "bakwas", "bakwaas", "faltu"
+        ],
+        answer: "Apne sanskaar mat bhulo. Achhe se baat karo! 😡"
+    },
+
+    // PHOTOS
+    {
+        questions: [
+            "photos", "pictures", "hostel images", "photos dekhna hai", "pictures dekh sakte hai", "hostel ki images", "photos available", "kya photo hai", "pics", "hostel ki pics"
+        ],
+        answer: "Har hostel listing mein photos ka gallery hai, aap dekh sakte hain."
+    },
+
+    // DIRECT BOOKING
+    {
+        questions: [
+            "direct booking", "book hostel", "booking kaise kare", "reservation kaise kare", "kya yahan se booking hoti hai", "booking process"
+        ],
+        answer: "Booking usually directly hostel owner ke through hoti hai. Website pe details mil jayenge."
+    }
     
+    ]
+  
+  // --- Utility: Clean text for robust matching ---
+  function cleanText(text) {
+    return text
+      .toLowerCase()
+      .replace(/[\p{P}$+<=>^`|~]/gu, '') // Remove punctuation
+      .replace(/\s+/g, ' ') // Collapse whitespace
+      .trim();
+  }
+  
+  // --- Improved Matching Logic ---
+  function getBotResponse(userMessage) {
+    const cleanedInput = cleanText(userMessage);
+    let bestMatch = null;
+    let bestScore = 0;
     
-
-    {
-        questions: ["namaste", "ram ram", "kya haal hai"],
-        answer: "Hello there! How can I help you find your perfect hostel today?"
-    },
-    {
-        questions: ["hostel kaise dhundhu", "hostel search kaise karu", "rehne ki jagah kaise khojein", "hostel mil jayega kya"],
-        answer: "To search for a hostel, just head to the 'Home' page and use the search bar. You can refine your options with filters for location, price, and amenities!"
-    },
-    {
-        questions: ["ye website kya hai", "hostel finder kya kaam karta hai", "aap kaun ho", "kya karte ho"],
-        answer: "HostelFinder is your friendly guide to finding suitable and affordable hostel accommodations, especially great for students and travelers!"
-    },
-    {
-        questions: ["mera hostel add karna hai", "hostel owner kaise list karein", "apni property kaise dalu", "hostel register kaise karte hain"],
-        answer: "If you're a hostel owner, fantastic! You can list your property by visiting the 'Owner' page and providing your details there."
-    },
-    {
-        questions: ["kharcha kitna hoga", "expenses calculate kaise karein", "budget planner kya hai", "hostel ka estimate"],
-        answer: "Our handy expense calculator helps you estimate the potential costs of your hostel stay, so you can budget like a pro!"
-    },
-    {
-        questions: ["contact kaise karein", "support se baat karni hai", "madad chahiye"],
-        answer: "You can reach our team through the 'Contact Us' page on our website. We're here to help!"
-    },
-    {
-        questions: ["review de sakta hu kya", "hostel pe review kaise likhu", "apna experience share karna hai"],
-        answer: "Absolutely! Your feedback is valuable. You can leave a review on the 'Reviews' page or directly on a specific hostel's detail page."
-    },
-    {
-        questions: ["shukriya", "dhanyawad", "theek hai", "badhiya"],
-        answer: "You're most welcome! Glad I could assist. Is there anything else you need?"
-    },
-    {
-        questions: ["filter kaise lagau", "options kya hain filter ke", "search kaise refine karein"],
-        answer: "After searching, you'll see filter options for price range, amenities (like Wi-Fi or AC), room type, and more to narrow down your results."
-    },
-    {
-        questions: ["photos hain kya", "pictures dekh sakta hu kya", "hostel ki images"],
-        answer: "Yes! Each hostel listing includes a gallery of photos so you can see what it looks like before you decide."
-    },
-    {
-        questions: ["hostel finder free hai kya", "paisa lagega kya", "kitna charge hai"],
-        answer: "Using HostelFinder to search for and discover hostels is completely free for users!"
-    },
-    {
-        questions: ["direct booking hogi kya", "hostel book kaise karein", "reservation kaise banayein"],
-        answer: "HostelFinder connects you with hostels. While you can view details here, bookings are typically finalized directly with the hostel or their booking partner."
-    },
-    {
-        questions: ["search kaise badalna hai", "dobara search kaise karein", "naye सिरे se search"],
-        answer: "You can easily modify your search criteria directly in the search bar on the 'Home' page and click search again."
-    },
-    {
-        questions: ["university kaise select karu", "kaun si university choose karu", "university search kaise hoti hai"],
-        answer: "On the Home page, simply use the 'Select Your University' dropdown to choose your institution and find nearby hostels."
-    },
-    {
-        questions: ["kaun kaun si universities hain", "universities ki list batao", "konsi universities available hain"],
-        answer: "We currently support searching for hostels near Vinoba Bhave University, University of Delhi, University of Mumbai, Anna University, and University of Calcutta."
-    },
-    {
-        questions: ["gender ke hisaab se filter kaise karu", "ladka ladkiyon ke liye filter hai kya", "unisex hostel milenge kya"],
-        answer: "Yes, you can filter hostels by gender specificity! Look for the 'Gender Specific' filter group to choose 'Boys Only', 'Girls Only', or 'Unisex' options."
-    },
-    {
-        questions: ["rent ke hisaab se kaise filter karu", "price range kya hai", "kitne tak ka hostel milega"],
-        answer: "Under 'Filter Hostels', you'll find 'Room Rent (₹)'. You can enter your desired minimum and maximum rent to narrow down options within your budget."
-    },
-    {
-        questions: ["university se kitni dur ka filter laga sakta hu", "distance filter kaise use karein"],
-        answer: "Use the 'Distance from University' slider in the filters section to set your preferred maximum distance from the university campus."
-    },
-    {
-        questions: ["kya kya facilities filter kar sakta hu", "AC, Wi-Fi mil jayega kya", "mess food, laundry ka filter hai"],
-        answer: "Absolutely! You can filter by 'Basic Services' like AC, Wi-Fi, Mess Food, and Laundry Service to find hostels with the amenities you need."
-    },
-    {
-        questions: ["filter apply kaise karu", "filter hatana hai, kaise hoga"],
-        answer: "After selecting your filters, click 'Apply Filters' to see updated results. If you want to start fresh, hit 'Clear Filters'."
-    },
-    {
-        questions: ["ye 3D model kya hai", "hostel ka 3D view hai kya", "threejs model kya karta hai"],
-        answer: "That's our 3D visualizer! It's a cool feature where you can interact with a 3D model of a typical hostel layout to get a feel for the space."
-    },
-    {
-        questions: ["hostel mein kya kya facilities milengi", "kya kya features hote hain hostels mein"],
-        answer: "Hostel listings typically include details on amenities like Wi-Fi, AC, mess food, laundry service, security, and more. Check the 'Basic Services' filter for common options."
-    },
-    {
-        questions: ["owner portal kya hai", "mera hostel list karna hai", "hostel owner kaise banein"],
-        answer: "If you're a hostel owner, you can list your property on HostelFinder by visiting the 'Owner' page. It's a great way to connect with students!"
-    },
-    {
-        questions: ["expense estimator kya hai", "budget tool kaise use karu", "kharcha kitna hoga, kaise pata chale"],
-        answer: "The Hostel Expense Estimator helps you plan your budget. You can input one-time setup costs and monthly recurring costs like rent, food, and utilities."
-    },
-    {
-        questions: ["hostel finder kis problem ko solve karta hai", "iska faida kya hai", "hostel finder kyu banaya hai"],
-        answer: "HostelFinder solves the problem of scattered listings, limited transparency, time constraints, and distance barriers in finding student hostels."
-    },
-    {
-        questions: ["hostel finder use karne ke kya faide hain", "ye kaise help karta hai", "kya benefits hain"],
-        answer: "HostelFinder offers comprehensive search and filters, detailed and transparent listings, a user-friendly experience, a focus on student needs, and verified reviews."
-    },
-    {
-        questions: ["hostel ki listing mein kya information milti hai", "details transparent hain kya"],
-        answer: "Each hostel profile provides in-depth information including location, room types, amenities, and direct contact details for owners."
-    },
-    {
-        questions: ["hostel finder easy hai kya use karna", "user friendly hai kya"],
-        answer: "Yes, HostelFinder has an intuitive interface designed with students in mind, making the search process straightforward and stress-free."
-    },
-    {
-        questions: ["ye students ke liye hi hai kya", "students ki needs pe focus karta hai kya"],
-        answer: "Yes, our platform prioritizes factors crucial for academic success and comfortable living, understanding the unique requirements of students."
-    },
-    {
-        questions: ["hostel owners easily list kar sakte hain kya", "listing karna aasan hai kya"],
-        answer: "Hostel owners can easily list and manage their properties through a dedicated dashboard with a simplified submission process."
-    },
-    {
-        questions: ["hostel finder pe reviews hain kya", "verified reviews milenge kya", "reviews dekh sakte hain kya"],
-        answer: "Yes, the platform features genuine reviews and ratings from past and current residents to help you make informed decisions."
-    },
-    {
-        questions: ["hostel finder ka mission kya hai", "inka maksad kya hai"],
-        answer: "Our mission is to empower students and their families with the tools and information to make confident decisions about accommodation, supporting a successful academic journey."
-    },
-    {
-        questions: ["hostel dhundhne mein kya problem aati hai", "kya mushkilein hain hostel find karne mein"],
-        answer: "Common challenges include a lack of centralized information, limited transparency, time constraints during admissions, and distance barriers for research."
-    },
-    {
-        questions: ["info galat hai toh kya karu", "details purani lag rahi hain, kaise bataun", "outdated information report kaise karein"],
-        answer: "If you find outdated or incorrect information, please report it via the 'Contact Us' page, and we will rectify it promptly."
-    },
-    {
-        questions: ["boys aur girls ke liye alag hostel hain kya", "ladke ladkiyon ke liye hostel milenge kya", "unisex hostel bhi hain kya"],
-        answer: "Yes, our platform includes 'Boys Only', 'Girls Only', and 'Unisex' hostels. You can filter your search based on gender specificity."
-    },
-    {
-        questions: ["naye hostel kitne time mein add hote hain", "kitne naye hostel aate rehte hain", "nayi listings kab aati hain"],
-        answer: "We continuously expand our network. New hostels are added regularly as owners register and pass our verification process."
-    },
-    {
-        questions: ["mera hostel ka detail update kaise karu", "owner ko details change karni hain kaise hoga", "hostel ki info badalni hai"],
-        answer: "Currently, for updates to existing listings, please contact our support team directly via the 'Contact Us' page, providing your hostel's name and the details you wish to change. We are working on an owner dashboard."
-    }
-
-    ];
-
-    // --- Initially hide the modal ---
-    if (chatbotModal) {
-        chatbotModal.style.display = 'none';
-    }
-
-    // --- Event Listeners ---
-    if (chatbotFab && chatbotModal && closeButton && chatMessagesContainer && userInput && sendButton) {
-        chatbotFab.addEventListener('click', () => {
-            chatbotModal.style.display = 'flex'; // Use 'flex' to enable centering
-            userInput.focus(); // Focus on input when opened
-            scrollToBottom();
-        });
-
-        closeButton.addEventListener('click', () => {
-            chatbotModal.style.display = 'none';
-        });
-
-        // Close modal if clicked outside content
-        chatbotModal.addEventListener('click', (event) => {
-            if (event.target === chatbotModal) {
-                chatbotModal.style.display = 'none';
-            }
-        });
-
-        // Send message on button click
-        sendButton.addEventListener('click', sendMessage);
-
-        // Send message on Enter key press in input field
-        userInput.addEventListener('keypress', (event) => {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        });
-    } else {
-        console.error("One or more chatbot elements not found. Check IDs and classes.");
-    }
-
-    // --- Chatbot Functions ---
-    function displayMessage(message, sender) {
-        const messageDiv = document.createElement('div');
-        messageDiv.classList.add('message');
-        messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
-        messageDiv.textContent = message;
-        chatMessagesContainer.appendChild(messageDiv);
-        scrollToBottom();
-    }
-
-    function getBotResponse(userMessage) {
-        const lowerCaseMessage = userMessage.toLowerCase();
-        let botResponse = "I'm sorry, I don't understand that question. Can you please rephrase it or ask something else related to HostelFinder?";
-
-        for (const entry of knowledgeBase) {
-            if (entry.questions.some(q => lowerCaseMessage.includes(q))) {
-                botResponse = entry.answer;
-                break;
-            }
+    for (const entry of knowledgeBase) {
+      for (const q of entry.questions) {
+        const cleanedQ = cleanText(q);
+        // Exact match
+        if (cleanedInput === cleanedQ) {
+          return entry.answer;
         }
-        return botResponse;
+        // Partial (word overlap) match
+        const inputWords = cleanedInput.split(' ');
+        const qWords = cleanedQ.split(' ');
+        const overlap = inputWords.filter(word => qWords.includes(word)).length;
+        if (overlap > bestScore) {
+          bestScore = overlap;
+          bestMatch = entry.answer;
+        }
+      }
     }
-
-    function sendMessage() {
-        const userMessage = userInput.value.trim();
-        if (userMessage === '') return;
-
-        displayMessage(userMessage, 'user');
-        userInput.value = ''; // Clear input
-
-        // Simulate bot typing/thinking time
-        setTimeout(() => {
-            const botResponse = getBotResponse(userMessage);
-            displayMessage(botResponse, 'bot');
-        }, 500); // 0.5 second delay
+    if (bestScore > 0) return bestMatch;
+    // Fallback
+    return "I'm not sure I understand. Could you try rephrasing your question, or ask about another aspect of HostelFinder? If you need human help, please visit our <a href='contact-us.html' target='_blank'>Contact Us</a> page.";
+  }
+  
+  // --- Typing Indicator Helpers ---
+  function showTypingIndicator() {
+    removeTypingIndicator();
+    const indicator = document.createElement('div');
+    indicator.id = 'typing-indicator';
+    indicator.className = 'message bot-message';
+    indicator.style.fontStyle = 'italic';
+    indicator.style.color = '#888';
+    indicator.textContent = 'Bot is typing...';
+    chatMessagesContainer.appendChild(indicator);
+    scrollToBottom();
+  }
+  
+  function removeTypingIndicator() {
+    const indicator = document.getElementById('typing-indicator');
+    if (indicator) indicator.remove();
+  }
+  
+  // --- Chat History Persistence ---
+  function saveChatHistory() {
+    const messages = Array.from(chatMessagesContainer.querySelectorAll('.message')).map(div => ({
+      text: div.innerHTML,
+      sender: div.classList.contains('user-message') ? 'user' : 'bot'
+    }));
+    localStorage.setItem('chatbotHistory', JSON.stringify(messages));
+  }
+  
+  function loadChatHistory() {
+    chatMessagesContainer.innerHTML = '';
+    const history = JSON.parse(localStorage.getItem('chatbotHistory') || '[]');
+    history.forEach(msg => displayMessage(msg.text, msg.sender, true));
+  }
+  
+  // --- Display Message (supports HTML for fallback links) ---
+  function displayMessage(message, sender, skipHistory) {
+    removeTypingIndicator(); // Always remove any existing typing indicator before showing new message
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('message');
+    messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+    messageDiv.innerHTML = message;
+    chatMessagesContainer.appendChild(messageDiv);
+    scrollToBottom();
+    if (!skipHistory) saveChatHistory();
+  }
+  
+  function scrollToBottom() {
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+  }
+  
+  // --- Send Message with Typing Indicator ---
+  function sendMessage() {
+    const userMessage = userInput.value.trim();
+    if (userMessage === '') return;
+    
+    displayMessage(userMessage, 'user');
+    userInput.value = '';
+    showTypingIndicator();
+    
+    setTimeout(() => {
+      const botResponse = getBotResponse(userMessage);
+      displayMessage(botResponse, 'bot');
+    }, 700);
+  }
+  
+  // --- Modal Show/Hide and Chatbot UI Events ---
+  if (chatbotFab && chatbotModal && closeButton && chatMessagesContainer && userInput && sendButton) {
+    chatbotModal.style.display = 'none';
+    
+    chatbotFab.addEventListener('click', () => {
+      chatbotModal.style.display = 'flex';
+      loadChatHistory();
+      // Only show welcome message if chat is empty
+      if (chatMessagesContainer.querySelectorAll('.message').length === 0) {
+        displayMessage('Welcome! How can I help you', 'bot');
+      }
+      userInput.focus();
+      scrollToBottom();
+    });
+    
+    closeButton.addEventListener('click', () => {
+      chatbotModal.style.display = 'none';
+    });
+    
+    chatbotModal.addEventListener('click', (event) => {
+      if (event.target === chatbotModal) {
+        chatbotModal.style.display = 'none';
+      }
+    });
+    
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (event) => {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    });
+    
+    if (clearChatButton) {
+      clearChatButton.addEventListener('click', () => {
+        localStorage.removeItem('chatbotHistory');
+        chatMessagesContainer.innerHTML = '';
+        displayMessage('Welcome! How can I help you', 'bot');
+      });
     }
-
-    function scrollToBottom() {
-        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }
+    
+  } else {
+    console.error("One or more chatbot elements not found. Check IDs and classes.");
+  }
 });

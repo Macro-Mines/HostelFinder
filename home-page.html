@@ -196,17 +196,21 @@
     
     <!-- CHAT - BOT -->
 <button id="chatbot-fab">
-    <img src="images/chatbot.png" alt="Chat with us">
+    <img src="images/chatbot.gif" alt="Chat with us">
 </button>
 
 <div id="chatbot-modal" class="modal">
     <div class="chatbot-content"> <!-- Changed from modal-content to chatbot-content -->
         <div class="chat-header">
             <h3>HostelFinder Chat</h3>
+            <button id="clear-chat" title="Clear chat history">
+                <img src="images/trash.svg" alt="Clear Chat" />
+            </button>
+            <!-- <button id="clear-chat" title="Clear chat history"></button> -->
             <span class="close-button">&times;</span>
         </div>
         <div class="chat-messages">
-            <div class="message bot-message">Hello! How can I help you today?</div>
+            <!-- <div class="message bot-message">Hello! How can I help you today?</div> -->
         </div>
         <div class="chat-input-container">
             <input type="text" id="user-input" placeholder="Type your message...">
