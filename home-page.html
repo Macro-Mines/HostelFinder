@@ -195,22 +195,22 @@
     
     
     <!-- CHAT - BOT -->
-<button id="chatbot-fab">
+<!-- <button id="chatbot-fab">
     <img src="images/chatbot.gif" alt="Chat with us">
 </button>
 
 <div id="chatbot-modal" class="modal">
-    <div class="chatbot-content"> <!-- Changed from modal-content to chatbot-content -->
+    <div class="chatbot-content"> 
         <div class="chat-header">
             <h3>HostelFinder Chat</h3>
             <button id="clear-chat" title="Clear chat history">
                 <img src="images/trash.svg" alt="Clear Chat" />
             </button>
-            <!-- <button id="clear-chat" title="Clear chat history"></button> -->
+            
             <span class="close-button">&times;</span>
         </div>
         <div class="chat-messages">
-            <!-- <div class="message bot-message">Hello! How can I help you today?</div> -->
+            <div class="message bot-message">Hello! How can I help you today?</div>
         </div>
         <div class="chat-input-container">
             <input type="text" id="user-input" placeholder="Type your message...">
@@ -218,7 +218,7 @@
                 <img src="images/send-icon.svg" alt="Send"> </button>
         </div>
     </div>
-</div>
+</div> -->
 
 
     
@@ -226,7 +226,10 @@
     
     
     <script src="calculator.js"></script>
-    <script src="chatbot.js"></script>
+    <script>
+        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="_G-Va1_fj61-Fzs-xefVF";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+    <!-- <script src="test.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>    
 
