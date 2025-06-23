@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Offline | HostelFinder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+    }
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .icon {
+      font-size: 5rem;
+      color: #2874A6;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      margin: 0 0 0.5rem 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      color: #2874A6;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 0 0 1rem 0;
+      color: #555;
+    }
+    .tips {
+      background: #fff;
+      padding: 1rem 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(40, 116, 166, 0.07);
+    }
+    .reload-btn {
+      background: #2874A6;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: background 0.2s;
+    }
+    .reload-btn:hover {
+      background: #1B4F72;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+      .tips {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon" aria-label="Offline">📡</div>
+    <h1>You’re Offline</h1>
+    <p>It looks like you’ve lost your internet connection.<br>
+      The HostelFinder app can’t load this page right now.</p>
+    <div class="tips">
+      <ul>
+        <li>Check your internet or WiFi connection.</li>
+        <li>Try reloading this page once you’re back online.</li>
+        <li>Some features may still work if you’ve visited them before.</li>
+      </ul>
+    </div>
+    <button class="reload-btn" onclick="window.location.reload();">Try Again</button>
+  </div>
+</body>
+</html>
