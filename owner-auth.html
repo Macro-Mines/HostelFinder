@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hostel Owner Login | HostelFinder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="owner-auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <nav class="container">
+        <a href="home-page.html" class="logo">HostelFinder</a>
+        <ul class="nav-links">
+            <li><a href="home-page.html#find-hostel">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+    </nav>
+    </header>
+    
+    <div class="glass-card">
+        <div class="logo-section">
+            <img src="images/logo.png" alt="HostelFinder Logo" class="logo-img">
+            <h1 class="logo-title">HostelFinder</h1>
+            <p class="subtitle">Owner Portal</p>
+        </div>
+        <form id="auth-form">
+            <div class="input-group">
+                <input type="email" id="auth-email" required>
+                <label for="auth-email">Email</label>
+            </div>
+            <div class="input-group">
+                <input type="password" id="auth-password" required>
+                <label for="auth-password">Password</label>
+            </div>
+            <div class="btn-row">
+                <button type="submit" id="sign-in-btn" class="btn-primary">Sign In</button>
+                <button type="button" id="sign-up-btn" class="btn-secondary">Sign Up</button>
+            </div>
+            <p id="auth-message"></p>
+        </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="owner-auth.js"></script>
+</body>
+</html>

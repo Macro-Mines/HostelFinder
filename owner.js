@@ -1,103 +1,103 @@
+// Firebase config
 const firebaseConfig = {
     apiKey: "AIzaSyBmfu8M8jAGMTw-Y9munlvZDYIjnxfpbyg",
     authDomain: "hostelfinder-99ba5.firebaseapp.com",
     projectId: "hostelfinder-99ba5",
-    storageBucket: "hostelfinder-99ba5.firebasestorage.app",
+    storageBucket: "hostelfinder-99ba5.appspot.com",
     messagingSenderId: "327861201482",
-    appId: "1:327861201482:web:b5905432820f8a536e54b3",
-    measurementId: "G-ED9MGNXPCG"
+    appId: "1:327861201482:web:b5905432820f8a536e54b3"
 };
-
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-console.log("Firebase initialized successfully in owner.js!");
-console.log("Firestore DB object:", db);
 
-document.addEventListener('DOMContentLoaded', () => {
-    const addHostelForm = document.getElementById('add-hostel-form');
-    const addHostelMessage = document.getElementById('add-hostel-message');
-    const ownerFacilityCheckboxes = document.querySelectorAll('.owner-facility-checkbox');
-    // Select all room capacity checkboxes by their class
-    const ownerRoomCapacityCheckboxes = document.querySelectorAll('.owner-room-capacity-checkbox');
+// DOM
+const form = document.getElementById('hostel-form');
+const message = document.getElementById('add-hostel-message');
+const cancelBtn = document.getElementById('cancel-btn');
 
+// Auth check
+firebase.auth().onAuthStateChanged(user => {
+    if (!user) window.location.href = "owner-auth.html";
+    // Optionally, you can pre-fill owner email here if desired
+});
 
-    if (typeof firebase === 'undefined' || !firebase.apps.length) {
-        addHostelMessage.textContent = "Firebase is not initialized. Please check your Firebase configuration.";
-        addHostelMessage.style.color = 'red';
+form.onsubmit = async function(e) {
+    e.preventDefault();
+    message.textContent = "Saving...";
+    message.style.color = "#333";
+    
+    const user = firebase.auth().currentUser;
+    if (!user) {
+        message.textContent = "Authentication error. Please sign in again.";
+        message.style.color = "#e74c3c";
         return;
     }
+    
+    // Get field values
+    const hostelName = document.getElementById('owner-hostel-name').value.trim();
+    const universityId = document.getElementById('owner-university-id').value;
+    const location = document.getElementById('owner-location').value.trim();
+    const image = document.getElementById('owner-image').value; // default or URL
+    const distance = parseFloat(document.getElementById('owner-distance').value);
+    const gender = document.getElementById('owner-gender').value;
+    const minRent = parseInt(document.getElementById('owner-min-rent').value, 10);
+    const maxRent = parseInt(document.getElementById('owner-max-rent').value, 10);
+    const ownerContactName = document.getElementById('owner-contact-name').value.trim();
+    const ownerPhone = document.getElementById('owner-phone').value.trim();
+    const description = document.getElementById('owner-description').value.trim();
+    
+    // Get checked values for room capacity and facilities
+    const roomCapacity = Array.from(document.querySelectorAll('.owner-room-capacity-checkbox:checked')).map(cb => cb.value);
+    const facilities = Array.from(document.querySelectorAll('.owner-facility-checkbox:checked')).map(cb => cb.value);
+    
+    // Basic validation (in addition to HTML5)
+    if (!hostelName || !universityId || !location || isNaN(distance) || !gender || isNaN(minRent) || isNaN(maxRent) ||
+        !ownerContactName || !ownerPhone || !description
+    ) {
+        message.textContent = "Please fill all required fields correctly.";
+        message.style.color = "#e74c3c";
+        return;
+    }
+    
+    
+    if (minRent > maxRent) {
+        message.textContent = "Minimum rent cannot be greater than maximum rent.";
+        message.style.color = "#e74c3c";
+        return;
+    }
+    
+    // Build data object
+    const hostelData = {
+        name: hostelName,
+        universityId: universityId,
+        location: location,
+        image: image,
+        distance: distance,
+        gender: gender,
+        minRent: minRent,
+        maxRent: maxRent,
+        roomCapacity: roomCapacity,
+        facilities: facilities,
+        ownerContactName: ownerContactName,
+        ownerPhone: ownerPhone,
+        ownerEmail: user.email,
+        description: description,
+        ownerUID: user.uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    
+    try {
+        await db.collection('ownerHostelsSubmission').add(hostelData);
+        message.textContent = "Hostel added successfully! Redirecting...";
+        message.style.color = "green";
+        setTimeout(() => window.location.href = "owner-dashboard.html", 1200);
+    } catch (err) {
+        message.textContent = "Error: " + err.message;
+        message.style.color = "#e74c3c";
+    }
+};
 
-    addHostelForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        addHostelMessage.textContent = 'Adding hostel...';
-        addHostelMessage.style.color = 'blue';
-
-        // Get values from form fields
-        const hostelName = document.getElementById('owner-hostel-name').value;
-        const universityId = document.getElementById('owner-university-id').value;
-        const location = document.getElementById('owner-location').value;
-        const image = document.getElementById('owner-image').value;
-        const distance = parseFloat(document.getElementById('owner-distance').value);
-        const gender = document.getElementById('owner-gender').value;
-        const minRent = parseInt(document.getElementById('owner-min-rent').value);
-        const maxRent = parseInt(document.getElementById('owner-max-rent').value);
-        // OLD: const roomCapacity = document.getElementById('owner-room-capacity').value;
-        const facilitiesRaw = document.getElementById('owner-facilities') ? document.getElementById('owner-facilities').value : ''; // Defensive if element removed
-        const ownerContactName = document.getElementById('owner-contact-name').value;
-        const ownerPhone = document.getElementById('owner-phone').value;
-        const ownerEmail = document.getElementById('owner-email').value;
-        const description = document.getElementById('owner-description').value;
-
-        // Collect selected facilities from checkboxes
-        const facilities = Array.from(ownerFacilityCheckboxes)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.value);
-
-        // Collect selected room capacities from checkboxes
-        const roomCapacity = Array.from(ownerRoomCapacityCheckboxes)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.value);
-
-        // Basic validation updated for array fields
-        if (!hostelName || !universityId || !location || !image || isNaN(distance) || !gender || isNaN(minRent) || isNaN(maxRent) || roomCapacity.length === 0 || facilities.length === 0 || !ownerContactName || !ownerPhone || !ownerEmail || !description) {
-            addHostelMessage.textContent = 'Please fill in all required fields and select at least one facility and room capacity.';
-            addHostelMessage.style.color = 'red';
-            return;
-        }
-        
-        
-
-
-        const newHostelData = {
-            name: hostelName,
-            universityId: universityId,
-            location: location,
-            image: image,
-            distance: distance,
-            gender: gender,
-            roomRent: { min: minRent, max: maxRent },
-            roomCapacity: roomCapacity,
-            facilities: facilities,
-            ownerContactName: ownerContactName,
-            ownerPhone: ownerPhone,
-            ownerEmail: ownerEmail,
-            description: description
-        };
-
-        try {
-            const docRef = await db.collection('ownerHostelsSubmission').add(newHostelData);
-            addHostelMessage.innerHTML = `<img src="images/success.gif" alt="Success" style="width: 40px; height: 40px; vertical-align: middle; margin-right: 8px;"> Hostel "${hostelName}" added successfully!`;
-
-            addHostelMessage.style.color = 'green';
-            addHostelForm.reset(); // Clear text inputs
-            ownerFacilityCheckboxes.forEach(checkbox => checkbox.checked = false);
-            // NEW: Uncheck all room capacity checkboxes
-            ownerRoomCapacityCheckboxes.forEach(checkbox => checkbox.checked = false);
-        } catch (error) {
-            console.error("Error adding document: ", error);
-            addHostelMessage.textContent = `Error adding hostel: ${error.message}`;
-            addHostelMessage.style.color = 'red';
-        }
-    });
-});
+cancelBtn.onclick = function() {
+    window.location.href = "owner-dashboard.html";
+};

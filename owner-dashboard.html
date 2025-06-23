@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner Dashboard | HostelFinder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="owner-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <nav class="container">
+        <a href="home-page.html" class="logo">HostelFinder</a>
+        <ul class="nav-links">
+            <li><a href="home-page.html#find-hostel">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+    </nav>
+    </header>
+    
+    <div class="dashboard-container glass-card">
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <img src="images/logo.png" alt="Logo" class="logo-img">
+                <h1>Owner Dashboard</h1>
+            </div>
+            <div class="dashboard-actions">
+                <button id="list-new-btn" class="btn-primary">+ List New Hostel</button>
+                <button id="sign-out-btn" class="btn-secondary">Sign Out</button>
+            </div>
+        </div>
+        <div class="welcome-message" id="welcome-message"></div>
+        <h2 class="section-title">Your Hostels</h2>
+        <div id="hostel-list" class="hostel-list"></div>
+        <div id="dashboard-message"></div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+    <script src="owner-dashboard.js"></script>
+</body>
+</html>

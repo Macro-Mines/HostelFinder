@@ -1,0 +1,265 @@
+:root {
+    --primary-color: #007BFF;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #f8f9fa;
+    --text-color: #333;
+    --light-gray-color: #e9ecef;
+    --border-radius: 18px;
+    --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+    --glass-bg: rgba(255,255,255,0.78);
+    --glass-blur: blur(20px);
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #007BFF 0%, #8f5eff 55%, #23c6e7 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+}
+
+.glass-card {
+    background: var(--glass-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    margin: 48px auto 0 auto;
+    max-width: 520px;
+    padding: 38px 28px 32px 28px;
+    text-align: left;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    background: #fff;
+    margin-bottom: 6px;
+}
+
+#form-title {
+    font-size: 1.5rem;
+    margin: 0 0 6px 0;
+    color: var(--primary-color);
+}
+.subtitle {
+    font-size: 1.04rem;
+    color: #666;
+    margin: 0;
+    margin-bottom: 2px;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 95%;
+    padding: 16px 12px 9px 12px;
+    border: 1.3px solid var(--light-gray-color);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    transition: border-color 0.22s, background 0.22s;
+    outline: none;
+    resize: none;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: var(--primary-color);
+    background: rgba(255,255,255,0.85);
+}
+
+.input-group label {
+    position: absolute;
+    left: 14px;
+    top: 15px;
+    font-size: 1rem;
+    color: #888;
+    pointer-events: none;
+    background: transparent;
+    transition: 0.19s cubic-bezier(.4,0,.2,1);
+}
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group select:focus + label,
+.input-group select:not([value=""]) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+    top: -11px;
+    left: 10px;
+    font-size: 0.86rem;
+    color: var(--primary-color);
+    background: var(--glass-bg);
+    padding: 0 6px;
+    border-radius: 6px;
+}
+
+
+
+
+
+
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+    margin-bottom: 8px;
+    justify-content: center;
+}
+
+.btn-primary,
+.btn-secondary {
+    flex: 1;
+    padding: 11px 0;
+    font-size: 1.06rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: #fff;
+}
+.btn-primary:hover {
+    background: var(--primary-hover-color);
+}
+
+.btn-secondary {
+    background: var(--light-gray-color);
+    color: var(--primary-color);
+}
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.message-status {
+    min-height: 22px;
+    margin-top: 6px;
+    color: #e74c3c;
+    font-size: 1rem;
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .glass-card {
+        padding: 16px 3vw 16px 3vw;
+        margin: 16px auto 0 auto;
+    }
+    .form-header h1 {
+        font-size: 1.18rem;
+    }
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+
+
+
+
+
+
+/* --- Checkbox Group Styling for Grid/Flex Layout --- */
+
+.checkbox-group {
+    display: grid; /* Use Grid for multi-column layout */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive columns */
+    gap: 15px; /* Spacing between checkboxes */
+    margin-top: 15px; /* Space below the group label */
+    margin-bottom: 25px; /* Space before the next input group or form actions */
+    padding: 0; /* Ensure no unwanted padding pushes elements */
+    list-style: none; /* In case it's treated as a list implicitly */
+    align-items: start; /* Align items to the top if their content varies */
+}
+
+.checkbox-group.horizontal {
+    display: flex; /* Use Flexbox for a single row that wraps */
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
+    gap: 25px; /* Adjust gap for horizontal items */
+    justify-content: flex-start; /* Align items to the start */
+    grid-template-columns: unset; /* Remove grid columns for this specific class */
+}
+
+.checkbox-group label {
+    display: flex; /* Makes the label a flex container for its content */
+    align-items: center; /* Vertically centers the checkbox and text */
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    color: var(--text-color);
+    cursor: pointer;
+    white-space: nowrap;
+    
+    /* ******************************************************************* */
+    /* *** CRITICAL FIXES FOR CLICKABILITY & POSITIONING *** */
+    position: relative !important; /* Ensure it's not absolute or fixed, but relative for z-index context */
+    left: auto !important;
+    top: auto !important;
+    background: transparent !important;
+    padding: 0 !important;
+    
+    /* This is the key for clickability */
+    pointer-events: auto !important; /* Allow click events on the label and its contents */
+    /* ******************************************************************* */
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
+    margin-right: 8px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+    box-shadow: none;
+    background: #fff;
+    border-radius: 4px;
+    border: 1.5px solid var(--light-gray-color);
+    transition: all 0.2s ease-in-out;
+    vertical-align: middle;
+    flex-shrink: 0;
+    
+    /* Ensure the checkbox itself is clickable and visible */
+    position: relative; /* Keep this */
+    z-index: 2; /* Make this higher than the label's potential z-index if any */
+    pointer-events: auto; /* Ensure direct clicks on the checkbox work */
+}
+
+.checkbox-group input[type="checkbox"]:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* Ensure the group label (e.g., "Room Capacity", "Facilities") is styled correctly */
+.input-group .group-label {
+    display: block;
+    margin-bottom: 12px;
+    margin-top: 5px;
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0 5px;
+    background: transparent;
+    position: relative;
+    left: auto;
+    top: auto;
+}

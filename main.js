@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <p class="distance"><strong>Distance:</strong> ${hostel.distance} km</p>
                         <p class="rent"><strong>Rent:</strong> ₹${hostel.roomRent.min} - ₹${hostel.roomRent.max}</p>
                         <p class="gender"><strong>Gender:</strong> ${hostel.gender}</p>
-                        
+                    
                         <a href="hostel-details.html?id=${hostel.id}" class="btn-secondary">View Details</a>
                     </div>
                 `;

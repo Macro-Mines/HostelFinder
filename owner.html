@@ -3,147 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owner Dashboard - HostelFinder</title>
+    <title>Add/Edit Hostel | HostelFinder</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="owner.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
     <header>
-        <nav class="container">
-            <a href="home-page.html" class="logo">HostelFinder</a>
-            <ul class="nav-links">
-                <li><a href="home-page.html#find-hostel">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact-us.html">Contact</a></li>
-            </ul>
-        </nav>
+    <nav class="container">
+        <a href="home-page.html" class="logo">HostelFinder</a>
+        <ul class="nav-links">
+            <li><a href="home-page.html#find-hostel">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+    </nav>
     </header>
-
-    <main>
-        <section class="owner-hero">
-            <div class="container">
-                <div class="owner-hero-content">
-                    <h1>Hostel Owner Dashboard</h1>
-                    <p class="tagline">Manage your hostel listings on HostelFinder.</p>
-                </div>
+    
+    <div class="glass-card hostel-form-card">
+        <div class="form-header">
+            <img src="images/logo.png" alt="Logo" class="logo-img">
+            <h1 id="form-title">Add New Hostel Listing</h1>
+            <p class="subtitle">Manage your hostel listings on HostelFinder.</p>
+        </div>
+        <form id="hostel-form" autocomplete="off">
+            <div class="input-group">
+                <input type="text" id="owner-hostel-name" required>
+                <label for="owner-hostel-name">Hostel Name</label>
             </div>
-        </section>
-
-        <section class="owner-section container">
-            <div class="add-hostel-card">
-                <h2>Add New Hostel Listing</h2>
-                <form id="add-hostel-form">
-                    <div class="form-group">
-                        <label for="owner-hostel-name">Hostel Name</label>
-                        <input type="text" id="owner-hostel-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-university-id">Associated University</label>
-                        <select id="owner-university-id" required>
-                            <option value="" disabled selected>Select Your University</option>
-                            <option value="university-v">Vinoba Bhave University</option>
-                            <option value="university-a">University of Delhi</option>
-                            <option value="university-b">University of Mumbai</option>
-                            <option value="university-c">Anna University</option>
-                            <option value="university-d">University of Calcutta</option>
-                            <!-- <option value="university-vbu">Vinoba Bhave University</option>
-                            <option value="college-annanda">Annanda College</option>
-                            <option value="college-columbas">St. Columba's College</option>
-                            <option value="college-kbwomen">KB Women's College</option>
-                            <option value="government-polytechnic">Government Polytechnic</option>
-                            <option value="university-aisect">AISECT University</option>
-                            <option value="college-markham">Markham College of Commerce</option>
-                            <option value="college-interscience">Inter Science College</option> -->
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-location">Location (e.g., 'Kamla Nagar, Delhi')</label>
-                        <input type="text" id="owner-location" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="hidden" id="owner-image" value="images/room.jpg" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-distance">Distance from University (km)</label>
-                        <input type="number" id="owner-distance" step="0.1" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-gender">Gender Specific</label>
-                        <select id="owner-gender" required>
-                            <option value="Unisex">Unisex</option>
-                            <option value="Boys Only">Boys Only</option>
-                            <option value="Girls Only">Girls Only</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-min-rent">Minimum Rent (₹)</label>
-                        <input type="number" id="owner-min-rent" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-max-rent">Maximum Rent (₹)</label>
-                        <input type="number" id="owner-max-rent" required>
-                    </div>
-                    
-                    <div class="form-group">
-    <label>Room Capacity</label>
-    <div class="checkbox-group horizontal"> 
+            <div class="input-group">
+                <select id="owner-university-id" required>
+                    <option value="" disabled selected>Select Your University</option>
+                    <option value="university-vbu">Vinoba Bhave University</option>
+                    <option value="university-du">University of Delhi</option>
+                    <option value="university-mu">University of Mumbai</option>
+                    <option value="university-au">Anna University</option>
+                    <option value="university-cu">University of Calcutta</option>
+                </select>
+                <label for="owner-university-id">Associated University</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="owner-location" required>
+                <label for="owner-location">Location (e.g., 'Kamla Nagar, Delhi')</label>
+            </div>
+            <!-- Hidden Image Field (could be upgraded to upload in future) -->
+            <input type="hidden" id="owner-image" value="images/room.jpg">
+            <div class="input-group">
+                <input type="number" id="owner-distance" step="0.1" required>
+                <label for="owner-distance">Distance from University (km)</label>
+            </div>
+            <div class="input-group">
+                <select id="owner-gender" required>
+                    <option value="" disabled selected>Select Gender Specific</option>
+                    <option value="Unisex">Unisex</option>
+                    <option value="Boys Only">Boys Only</option>
+                    <option value="Girls Only">Girls Only</option>
+                </select>
+                <label for="owner-gender">Gender Specific</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="owner-min-rent" required>
+                <label for="owner-min-rent">Minimum Rent (₹)</label>
+            </div>
+            <div class="input-group">
+                <input type="number" id="owner-max-rent" required>
+                <label for="owner-max-rent">Maximum Rent (₹)</label>
+            </div>
+            
+            
+            
+            
+            <div class="input-group">
+    <label class="group-label">Room Capacity</label>
+    <div class="checkbox-group horizontal">
         <label><input type="checkbox" class="owner-room-capacity-checkbox" value="Single"> Single</label>
         <label><input type="checkbox" class="owner-room-capacity-checkbox" value="Double"> Double</label>
         <label><input type="checkbox" class="owner-room-capacity-checkbox" value="Triple"> Triple</label>
         <label><input type="checkbox" class="owner-room-capacity-checkbox" value="Quad"> Quad</label>
     </div>
 </div>
-
-                    
-                    <div class="form-group">
-    <label>Facilities</label>
+<div class="input-group">
+    <label class="group-label">Facilities</label>
     <div class="checkbox-group">
         <label><input type="checkbox" class="owner-facility-checkbox" value="AC"> AC</label>
         <label><input type="checkbox" class="owner-facility-checkbox" value="Wi-Fi"> Wi-Fi</label>
         <label><input type="checkbox" class="owner-facility-checkbox" value="Mess Food"> Mess Food</label>
-        <label><input type="checkbox" class="owner-facility-checkbox" value="Laundry Service"> Laundry Service</label>
+        <label><input type="checkbox" class="owner-facility-checkbox" value="Laundry Service"> Laundry</label>
         <label><input type="checkbox" class="owner-facility-checkbox" value="Study Area"> Study Area</label>
         <label><input type="checkbox" class="owner-facility-checkbox" value="Parking"> Parking</label>
         <label><input type="checkbox" class="owner-facility-checkbox" value="Gym"> Gym</label>
         <label><input type="checkbox" class="owner-facility-checkbox" value="24/7 Security"> 24/7 Security</label>
     </div>
 </div>
-
-                    
-                    <div class="form-group">
-                        <label for="owner-contact-name">Your Contact Name</label>
-                        <input type="text" id="owner-contact-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-phone">Your Phone Number</label>
-                        <input type="tel" id="owner-phone" pattern="[6-9]\d{9}" title="Please enter a valid 10-digit Indian phone number." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-email">Your Email</label>
-                        <input type="email" id="owner-email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="owner-description">Description</label>
-                        <textarea id="owner-description" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-primary">Add Hostel</button>
-                    <p id="add-hostel-message" class="message-status"></p>
-                </form>
+            
+            
+            
+            
+            
+            
+            <div class="input-group">
+                <input type="text" id="owner-contact-name" required>
+                <label for="owner-contact-name">Your Contact Name</label>
             </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
-        </div>
-    </footer>
-    
-    
+            <div class="input-group">
+                <input type="tel" id="owner-phone" pattern="[6-9]\d{9}" title="Please enter a valid 10-digit Indian phone number." required>
+                <label for="owner-phone">Your Phone Number</label>
+            </div>
+            <!-- <div class="input-group">
+                <input type="hidden" id="owner-email" required>
+                <label for="owner-email">Your Email</label>
+            </div> -->
+            <div class="input-group">
+                <textarea id="owner-description" rows="4" required></textarea>
+                <label for="owner-description">Description</label>
+            </div>
+            
+            
+            
+            
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary" id="save-btn">Add Hostel</button>
+                <button type="button" class="btn-secondary" id="cancel-btn">Cancel</button>
+            </div>
+            <p id="add-hostel-message" class="message-status"></p>
+        </form>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
     <script src="owner.js"></script>
 </body>
 </html>

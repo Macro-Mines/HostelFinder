@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Your Hostel</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="chatbot.css">
-    <link rel="manifest" href="/manifest.json">
+    <!-- <link rel="stylesheet" href="chatbot.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -104,7 +103,7 @@
                     <img src="images/old-man.png" alt="owner-png" width="120px">
                     <h2>Are you a Hostel Owner?</h2>
                     <p>List your hostel on HostelFinder and connect with thousands of students looking for accommodation.</p>
-                    <a href="owner.html" class="btn-owner-cta">List Your Hostel Now!</a>
+                    <a href="owner-auth.html" class="btn-owner-cta">List Your Hostel Now!</a>
                 </div>
             </div>
         </section>
@@ -230,7 +229,7 @@
     <script>
         (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="_G-Va1_fj61-Fzs-xefVF";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
-    <!-- <script src="test.js"></script> -->
+    <!-- <script src="chatbot.js"></script> -->
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>    
 
