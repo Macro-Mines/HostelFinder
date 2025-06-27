@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HostelFinder</title>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" />
     <style>
-        body {
-            margin: 0;
-            height: 100vh; /* Make the body take up the full viewport height */
-            display: flex;
-            justify-content: center; /* Center horizontally */
-            align-items: center; /* Center vertically */
-            background-color: #ffffff; /* Optional: A subtle background color */
-        }
+      body {
+          margin: 0;
+          height: 100vh; /* Make the body take up the full viewport height */
+          display: flex;
+          justify-content: center; /* Center horizontally */
+          align-items: center; /* Center vertically */
+          background-color: #ffffff; /* Optional: A subtle background color */
+      }
 
-        #logo-container {
-            /* You can style the container for the logo if needed */
-            /* For example, you could add a max-width */
-            max-width: 200px; */
-        }
+      #logo-container {
+          /* You can style the container for the logo if needed */
+          /* For example, you could add a max-width */
+          max-width: 200px; */
+      }
 
-        #logo {
-            /* Basic styling for the logo image */
-            max-width: 100%; /* Make sure it doesn't overflow its container */
-            height: auto; /* Maintain aspect ratio */
-            display: block; /* Remove any default inline spacing */
-        }
+      #logo {
+          /* Basic styling for the logo image */
+          max-width: 100%; /* Make sure it doesn't overflow its container */
+          height: auto; /* Maintain aspect ratio */
+          display: block; /* Remove any default inline spacing */
+      }
     </style>
     <script>
-        // Redirect to home-page.html after 2 seconds
-        setTimeout(function() {
-            window.location.href = 'home-page.html';
-        }, 2500); // 2500 milliseconds = 2.5 seconds
+      // Redirect to home-page.html after 2 seconds
+      setTimeout(function () {
+        window.location.href = "home-page.html";
+      }, 2500); // 2500 milliseconds = 2.5 seconds
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <div id="logo-container">
-        <img id="logo" src="images/h.gif" alt="HostelFinder Logo">
+      <img id="logo" src="images/h.gif" alt="HostelFinder Logo" />
     </div>
-</body>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
+      }
+    </script>
+  </body>
 </html>

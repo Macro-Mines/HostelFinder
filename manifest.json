@@ -1,7 +1,9 @@
 {
-  "name": "Hostel Finder",
+  "lang": "en-us",
+  "name": "Hostel Finder App",
   "short_name": "HostelFinder",
   "start_url": "/",
+  "orientation": "any",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#007BFF",

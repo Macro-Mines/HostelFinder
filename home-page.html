@@ -1,201 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Find Your Hostel</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json" />
     <!-- <link rel="stylesheet" href="chatbot.css"> -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <nav class="container">
-            <a href="home-page.html" class="logo">HostelFinder</a>
-            <ul class="nav-links">
-                <li><a href="home-page.html#find-hostel">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact-us.html">Contact</a></li>
-            </ul>
-        </nav>
+      <nav class="container">
+        <a href="home-page.html" class="logo">HostelFinder</a>
+        <ul class="nav-links">
+          <li><a href="home-page.html#find-hostel">Home</a></li>
+          <li><a href="about.html" title="About Hostel Finder">About</a></li>
+          <li><a href="contact-us.html" title="Contact Us">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <iframe id="hostel-threejs" src="hostel-model.html" scrolling="no"></iframe>
-        
-        <section id="find-hostel" class="hero">
-            <div class="hero-content">
-                <h1>Find Your Perfect Student Hostel</h1>
-                <p>Select your university to discover the best hostels in the area.</p>
-                <div class="search-container">
-                    <select id="university-select" required>
-                        <option value="" disabled selected>Select Your University</option>
-                        <option value="university-v">Vinoba Bhave University</option>
-                        <option value="university-a">University of Delhi</option>
-                        <option value="university-b">University of Mumbai</option>
-                        <option value="university-c">Anna University</option>
-                        <option value="university-d">University of Calcutta</option>
-                    </select>
-                    <button id="find-hostels-btn" class="btn-primary">Find Hostels</button>
-                </div>
+      <iframe
+        id="hostel-threejs"
+        src="hostel-model.html"
+        scrolling="no"
+      ></iframe>
+
+      <section id="find-hostel" class="hero">
+        <div class="hero-content">
+          <h1>Find Your Perfect Student Hostel</h1>
+          <p>
+            Select your university to discover the best hostels in the area.
+          </p>
+          <div class="search-container">
+            <select id="university-select" required>
+              <option value="" disabled selected>Select Your University</option>
+              <option value="university-v">Vinoba Bhave University</option>
+              <option value="university-a">University of Delhi</option>
+              <option value="university-b">University of Mumbai</option>
+              <option value="university-c">Anna University</option>
+              <option value="university-d">University of Calcutta</option>
+            </select>
+            <button id="find-hostels-btn" class="btn-primary">
+              Find Hostels
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="listings-and-filters container">
+        <div class="filters-section">
+          <img id="hostel-gif" src="images/hostel.gif" alt="hostel" />
+          <h2>Filter Hostels</h2>
+
+          <div class="filter-group">
+            <h3>Gender Specific</h3>
+            <label
+              ><input type="checkbox" name="gender" value="Boys Only" /> Boys
+              Only</label
+            >
+            <label
+              ><input type="checkbox" name="gender" value="Girls Only" /> Girls
+              Only</label
+            >
+            <label
+              ><input type="checkbox" name="gender" value="Unisex" />
+              Unisex</label
+            >
+          </div>
+
+          <div class="filter-group">
+            <h3>Room Rent (₹)</h3>
+            <div class="price-range">
+              <input type="number" id="min-rent" placeholder="Min" min="0" />
+              <span>-</span>
+              <input type="number" id="max-rent" placeholder="Max" min="0" />
             </div>
-        </section>
+          </div>
 
-        <section class="listings-and-filters container">
-            <div class="filters-section">
-                <img id="hostel-gif" src="images/hostel.gif" alt="hostel">
-                <h2>Filter Hostels</h2>
+          <div class="filter-group">
+            <h3>Distance from University</h3>
+            <input
+              type="range"
+              id="distance-slider"
+              min="0"
+              max="10"
+              value="10"
+              step="0.5"
+            />
+            <p>Max Distance: <span id="distance-value"></span></p>
+          </div>
 
-                <div class="filter-group">
-                    <h3>Gender Specific</h3>
-                    <label><input type="checkbox" name="gender" value="Boys Only"> Boys Only</label>
-                    <label><input type="checkbox" name="gender" value="Girls Only"> Girls Only</label>
-                    <label><input type="checkbox" name="gender" value="Unisex"> Unisex</label>
-                </div>
+          <div class="filter-group">
+            <h3>Basic Services</h3>
+            <label
+              ><input
+                type="checkbox"
+                name="service"
+                value="AC"
+                class="facility-checkbox"
+              />
+              AC</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="service"
+                value="Wi-Fi"
+                class="facility-checkbox"
+              />
+              Wi-Fi</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="service"
+                value="Mess Food"
+                class="facility-checkbox"
+              />
+              Mess Food</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                name="service"
+                value="Laundry Service"
+                class="facility-checkbox"
+              />
+              Laundry</label
+            >
+          </div>
 
-                <div class="filter-group">
-                    <h3>Room Rent (₹)</h3>
-                    <div class="price-range">
-                        <input type="number" id="min-rent" placeholder="Min" min="0">
-                        <span>-</span>
-                        <input type="number" id="max-rent" placeholder="Max" min="0">
-                    </div>
-                </div>
+          <div class="filter-actions">
+            <button id="apply-filters-btn" class="btn-primary">
+              Apply Filters
+            </button>
+            <button id="clear-filters-btn" class="btn-secondary">
+              Clear Filters
+            </button>
+          </div>
+        </div>
 
-                <div class="filter-group">
-                    <h3>Distance from University</h3>
-                    <input type="range" id="distance-slider" min="0" max="10" value="10" step="0.5">
-                    <p>Max Distance: <span id="distance-value"></span></p>
-                </div>
+        <span id="move-to-hostel-listing"></span>
+        <div class="hostel-listings">
+          <h2>Available Hostels</h2>
+          <div class="hostel-grid" id="hostel-listing">
+            <p class="placeholder-text">
+              Please select a university to see available hostels.
+            </p>
+          </div>
+        </div>
+      </section>
 
-                <div class="filter-group">
-                    <h3>Basic Services</h3>
-                    <label><input type="checkbox" name="service" value="AC" class="facility-checkbox"> AC</label>
-                    <label><input type="checkbox" name="service" value="Wi-Fi" class="facility-checkbox"> Wi-Fi</label>
-                    <label><input type="checkbox" name="service" value="Mess Food" class="facility-checkbox"> Mess Food</label>
-                    <label><input type="checkbox" name="service" value="Laundry Service" class="facility-checkbox"> Laundry</label>
-                </div>
-
-
-                <div class="filter-actions">
-                    <button id="apply-filters-btn" class="btn-primary">Apply Filters</button>
-                    <button id="clear-filters-btn" class="btn-secondary">Clear Filters</button>
-                </div>
-            </div>
-
-            <span id="move-to-hostel-listing"></span>
-            <div class="hostel-listings">
-                <h2>Available Hostels</h2>
-                <div class="hostel-grid" id="hostel-listing">
-                    <p class="placeholder-text">Please select a university to see available hostels.</p>
-                </div>
-            </div>
-            
-            
-        </section>
-        
-        
-        <section class="owner-cta-section">
-            <div class="container">
-                <div class="owner-cta-content">
-                    <img src="images/old-man.png" alt="owner-png" width="120px">
-                    <h2>Are you a Hostel Owner?</h2>
-                    <p>List your hostel on HostelFinder and connect with thousands of students looking for accommodation.</p>
-                    <a href="owner-auth.html" class="btn-owner-cta">List Your Hostel Now!</a>
-                </div>
-            </div>
-        </section>
-
+      <section class="owner-cta-section">
+        <div class="container">
+          <div class="owner-cta-content">
+            <img src="images/old-man.png" alt="owner-png" width="120px" />
+            <h2>Are you a Hostel Owner?</h2>
+            <p>
+              List your hostel on HostelFinder and connect with thousands of
+              students looking for accommodation.
+            </p>
+            <a href="owner-auth.html" class="btn-owner-cta"
+              >List Your Hostel Now!</a
+            >
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
+      </div>
     </footer>
-    
-    
-    
-    
-    
-    
+
     <button id="calculator-fab" aria-label="Open Hostel Expenses Calculator">
-        <img src="images/calculator.png" alt="Calculator Icon">
+      <img
+        src="images/calculator.png"
+        alt="Calculator Icon"
+        title="Expense Calculator"
+      />
     </button>
-    
+
     <div id="calculator-panel" class="calculator-panel">
-        <button id="close-calculator-panel" class="close-btn">&times;</button>
-        <img id="dollar-icon" src="images/dollar.gif" alt="Currency Icon" class="panel-icon">
-        <h3>Hostel Expense Estimator</h3>
-        <p class="panel-tagline">Plan your budget like a pro!</p>
-        
-        <div class="calculator-section one-time-costs">
-            <h4>One-Time Setup Costs</h4>
-            <div class="form-group">
-                <label for="initial-setup">First Month's Kick-off (Rent + Deposit)</label>
-                <input type="number" id="initial-setup" placeholder="e.g., 20000 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="room-essentials">Roomy Essentials Fund</label>
-                <input type="number" id="room-essentials" placeholder="e.g., 1500 (INR)" min="0" value="0">
-            </div>
+      <button id="close-calculator-panel" class="close-btn">&times;</button>
+      <img
+        id="dollar-icon"
+        src="images/dollar.gif"
+        alt="Currency Icon"
+        class="panel-icon"
+      />
+      <h3>Hostel Expense Estimator</h3>
+      <p class="panel-tagline">Plan your budget like a pro!</p>
+
+      <div class="calculator-section one-time-costs">
+        <h4>One-Time Setup Costs</h4>
+        <div class="form-group">
+          <label for="initial-setup"
+            >First Month's Kick-off (Rent + Deposit)</label
+          >
+          <input
+            type="number"
+            id="initial-setup"
+            placeholder="e.g., 20000 (INR)"
+            min="0"
+            value="0"
+          />
         </div>
-        
-        <div class="calculator-section monthly-costs">
-            <h4>Monthly Recurring Costs</h4>
-            <div class="form-group">
-                <label for="monthly-rent">My Cozy Corner Rent</label>
-                <input type="number" id="monthly-rent" placeholder="e.g., 8000 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="food-budget">Mess & Food Budget</label>
-                <input type="number" id="food-budget" placeholder="e.g., 4500 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="electricity">Power Up! (Electricity)</label>
-                <input type="number" id="electricity" placeholder="e.g., 500 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="internet">Net Nomad Fee</label>
-                <input type="number" id="internet" placeholder="e.g., 400 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="transport">Daily Dash & Ride</label>
-                <input type="number" id="transport" placeholder="e.g., 700 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="personal-care">Look Good, Feel Good</label>
-                <input type="number" id="personal-care" placeholder="e.g., 300 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="academic-supplies">Brain Fuel & Books</label>
-                <input type="number" id="academic-supplies" placeholder="e.g., 200 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="entertainment">Fun & Frolic Fund</label>
-                <input type="number" id="entertainment" placeholder="e.g., 1000 (INR)" min="0" value="0">
-            </div>
-            <div class="form-group">
-                <label for="misc-fund">Oops! Fund (Misc.)</label>
-                <input type="number" id="misc-fund" placeholder="e.g., 500 (INR)" min="0" value="0">
-            </div>
+        <div class="form-group">
+          <label for="room-essentials">Roomy Essentials Fund</label>
+          <input
+            type="number"
+            id="room-essentials"
+            placeholder="e.g., 1500 (INR)"
+            min="0"
+            value="0"
+          />
         </div>
-        
-        <div class="calculator-results">
-            <h4>Your Estimated Costs:</h4>
-            <p>One-Time Total: <span id="one-time-total">0 INR</span></p>
-            <p>Monthly Total: <span id="monthly-total">0 INR</span></p>
-            <p class="total-estimated">Grand Total (First Month): <span id="grand-total">0 INR</span></p>
+      </div>
+
+      <div class="calculator-section monthly-costs">
+        <h4>Monthly Recurring Costs</h4>
+        <div class="form-group">
+          <label for="monthly-rent">My Cozy Corner Rent</label>
+          <input
+            type="number"
+            id="monthly-rent"
+            placeholder="e.g., 8000 (INR)"
+            min="0"
+            value="0"
+          />
         </div>
-        <p class="disclaimer">Estimates only. Actual costs may vary.</p>
+        <div class="form-group">
+          <label for="food-budget">Mess & Food Budget</label>
+          <input
+            type="number"
+            id="food-budget"
+            placeholder="e.g., 4500 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="electricity">Power Up! (Electricity)</label>
+          <input
+            type="number"
+            id="electricity"
+            placeholder="e.g., 500 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="internet">Net Nomad Fee</label>
+          <input
+            type="number"
+            id="internet"
+            placeholder="e.g., 400 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="transport">Daily Dash & Ride</label>
+          <input
+            type="number"
+            id="transport"
+            placeholder="e.g., 700 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="personal-care">Look Good, Feel Good</label>
+          <input
+            type="number"
+            id="personal-care"
+            placeholder="e.g., 300 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="academic-supplies">Brain Fuel & Books</label>
+          <input
+            type="number"
+            id="academic-supplies"
+            placeholder="e.g., 200 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="entertainment">Fun & Frolic Fund</label>
+          <input
+            type="number"
+            id="entertainment"
+            placeholder="e.g., 1000 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="misc-fund">Oops! Fund (Misc.)</label>
+          <input
+            type="number"
+            id="misc-fund"
+            placeholder="e.g., 500 (INR)"
+            min="0"
+            value="0"
+          />
+        </div>
+      </div>
+
+      <div class="calculator-results">
+        <h4>Your Estimated Costs:</h4>
+        <p>One-Time Total: <span id="one-time-total">0 INR</span></p>
+        <p>Monthly Total: <span id="monthly-total">0 INR</span></p>
+        <p class="total-estimated">
+          Grand Total (First Month): <span id="grand-total">0 INR</span>
+        </p>
+      </div>
+      <p class="disclaimer">Estimates only. Actual costs may vary.</p>
     </div>
-    
-    
-    
+
     <!-- CHAT - BOT -->
-<!-- <button id="chatbot-fab">
+    <!-- <button id="chatbot-fab">
     <img src="images/chatbot.gif" alt="Chat with us">
 </button>
 
@@ -220,19 +357,50 @@
     </div>
 </div> -->
 
-
-    
-    
-    
-    
     <script src="calculator.js"></script>
+
+    <!-- CHATBASE  -->
     <script>
-        (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="_G-Va1_fj61-Fzs-xefVF";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+      (function () {
+        if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+          window.chatbase = (...arguments) => {
+            if (!window.chatbase.q) {
+              window.chatbase.q = [];
+            }
+            window.chatbase.q.push(arguments);
+          };
+          window.chatbase = new Proxy(window.chatbase, {
+            get(target, prop) {
+              if (prop === "q") {
+                return target.q;
+              }
+              return (...args) => target(prop, ...args);
+            },
+          });
+        }
+        const onLoad = function () {
+          const script = document.createElement("script");
+          script.src = "https://www.chatbase.co/embed.min.js";
+          script.id = "_G-Va1_fj61-Fzs-xefVF";
+          script.domain = "www.chatbase.co";
+          document.body.appendChild(script);
+        };
+        if (document.readyState === "complete") {
+          onLoad();
+        } else {
+          window.addEventListener("load", onLoad);
+        }
+      })();
     </script>
     <!-- <script src="chatbot.js"></script> -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
+      }
+    </script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>    
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <script src="main.js"></script>
-</body>
+  </body>
 </html>

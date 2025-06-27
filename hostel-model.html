@@ -1,112 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>three.js webgl - animation - keyframes (Auto Rotate)</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
     <style>
-        body {
-            background-color: #000000;
-        }
+      body {
+        background-color: #000000;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="container"></div>
 
     <script type="importmap">
-    {
+      {
         "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
+          "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/"
         }
-    }
+      }
     </script>
 
     <script type="module">
-        import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-        import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+      import * as THREE from "three";
+      import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+      import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+      import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+      import { DRACOLoader } from "three/addons/loaders/DRACOLoader.js";
 
-        let mixer;
-        const clock = new THREE.Clock();
-        const container = document.getElementById('container');
+      let mixer;
+      const clock = new THREE.Clock();
+      const container = document.getElementById("container");
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(window.devicePixelRatio);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      container.appendChild(renderer.domElement);
 
-        const pmremGenerator = new THREE.PMREMGenerator(renderer);
+      const pmremGenerator = new THREE.PMREMGenerator(renderer);
 
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        scene.environment = pmremGenerator.fromScene(new RoomEnvironment(), 0.04).texture;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x000000);
+      scene.environment = pmremGenerator.fromScene(
+        new RoomEnvironment(),
+        0.04
+      ).texture;
 
-        const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
-        camera.position.set(5, 2, 8);
+      const camera = new THREE.PerspectiveCamera(
+        40,
+        window.innerWidth / window.innerHeight,
+        1,
+        100
+      );
+      camera.position.set(5, 2, 8);
 
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.target.set(0, 0.5, 0);
-        controls.update();
-        controls.enablePan = false;
-        controls.enableDamping = true;
-        controls.enableZoom = false;
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.target.set(0, 0.5, 0);
+      controls.update();
+      controls.enablePan = false;
+      controls.enableDamping = true;
+      controls.enableZoom = false;
 
-        // --- AUTO ROTATE ---
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 1.5; // adjust as you like
-        
-        
-        // Disable X-axis rotation (polar angle)
-        const polar = controls.getPolarAngle();
-        controls.minPolarAngle = polar;
-        controls.maxPolarAngle = polar;
-        controls.domElement.removeEventListener('wheel', controls.onMouseWheel, false);
-        
-        //disable mouse scrolling
-        renderer.domElement.addEventListener('wheel', function(event) {
-            renderer.domElement.blur && renderer.domElement.blur();
-        }, { passive: true });
+      // --- AUTO ROTATE ---
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.5; // adjust as you like
 
+      // Disable X-axis rotation (polar angle)
+      const polar = controls.getPolarAngle();
+      controls.minPolarAngle = polar;
+      controls.maxPolarAngle = polar;
+      controls.domElement.removeEventListener(
+        "wheel",
+        controls.onMouseWheel,
+        false
+      );
 
-        const dracoLoader = new DRACOLoader();
-        dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/libs/draco/gltf/');
+      //disable mouse scrolling
+      renderer.domElement.addEventListener(
+        "wheel",
+        function (event) {
+          renderer.domElement.blur && renderer.domElement.blur();
+        },
+        { passive: true }
+      );
 
-        const loader = new GLTFLoader();
-        loader.setDRACOLoader(dracoLoader);
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath(
+        "https://cdn.jsdelivr.net/npm/three@0.158.0/examples/jsm/libs/draco/gltf/"
+      );
 
-        loader.load(
-            'animation/scene.gltf',
+      const loader = new GLTFLoader();
+      loader.setDRACOLoader(dracoLoader);
+
+      loader.load(
+        "animation/scene.gltf",
         //    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/models/gltf/LittlestTokyo.glb',
-            function (gltf) {
-                const model = gltf.scene;
-                model.position.set(1, 1, 0);
-                model.scale.set(0.01, 0.01, 0.01);
-                scene.add(model);
+        function (gltf) {
+          const model = gltf.scene;
+          model.position.set(1, 1, 0);
+          model.scale.set(0.01, 0.01, 0.01);
+          scene.add(model);
 
-                mixer = new THREE.AnimationMixer(model);
-                mixer.clipAction(gltf.animations[0]).play();
+          mixer = new THREE.AnimationMixer(model);
+          mixer.clipAction(gltf.animations[0]).play();
 
-                renderer.setAnimationLoop(animate);
-            }, undefined, function (e) {
-                console.error(e);
-            }
-        );
-
-        window.onresize = function () {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        };
-        
-        function animate() {
-            const delta = clock.getDelta();
-            if (mixer) mixer.update(delta);
-            controls.update(); // autoRotate happens here
-            renderer.render(scene, camera);
+          renderer.setAnimationLoop(animate);
+        },
+        undefined,
+        function (e) {
+          console.error(e);
         }
+      );
+
+      window.onresize = function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      };
+
+      function animate() {
+        const delta = clock.getDelta();
+        if (mixer) mixer.update(delta);
+        controls.update(); // autoRotate happens here
+        renderer.render(scene, camera);
+      }
     </script>
-</body>
+  </body>
 </html>

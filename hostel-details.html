@@ -1,45 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hostel Details - HostelFinder</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header>
-        <nav class="container">
-            <a href="home-page.html" class="logo">HostelFinder</a>
-            <ul class="nav-links">
-                <li><a href="home-page.html#find-hostel">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact-us.html">Contact</a></li>
-            </ul>
-        </nav>
+      <nav class="container">
+        <a href="home-page.html" class="logo">HostelFinder</a>
+        <ul class="nav-links">
+          <li><a href="home-page.html#find-hostel">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="container hostel-details-page">
-        <section class="hostel-detail-section">
-            <div id="hostel-detail-content" class="loading-state">
-                <img src="images/loading.gif" alt="loading" width="100px">
-                <p>Loading hostel details...</p>
-            </div>
-        </section>
+      <section class="hostel-detail-section">
+        <div id="hostel-detail-content" class="loading-state">
+          <img src="images/loading.gif" alt="loading" width="100px" />
+          <p>Loading hostel details...</p>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
+      </div>
     </footer>
-    
+
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-    
+
     <script src="hostel-details.js"></script>
-    
-</body>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
+      }
+    </script>
+  </body>
 </html>

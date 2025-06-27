@@ -1,180 +1,181 @@
 :root {
-    --primary-color: #007BFF;
-    --primary-hover-color: #0056b3;
-    --secondary-color: #f8f9fa;
-    --text-color: #333;
-    --light-gray-color: #e9ecef;
-    --border-radius: 18px;
-    --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
-    --glass-bg: rgba(255,255,255,0.75);
-    --glass-blur: blur(20px);
-    --input-bg: rgba(255,255,255,0.6);
-    --input-focus-bg: rgba(255,255,255,0.85);
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --secondary-color: #f8f9fa;
+  --text-color: #333;
+  --light-gray-color: #e9ecef;
+  --border-radius: 18px;
+  --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-blur: blur(20px);
+  --input-bg: rgba(255, 255, 255, 0.6);
+  --input-focus-bg: rgba(255, 255, 255, 0.85);
 }
 
 body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #007BFF 0%, #8f5eff 55%, #23c6e7 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+  min-height: 105vh;
+  background: linear-gradient(135deg, #007bff 0%, #8f5eff 55%, #23c6e7 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-
 
 /* Glassmorphic card */
 .glass-card {
-    position: relative;
-    z-index: 2;
-    max-width: 400px;
-    margin: 5vh auto 0 auto;
-    background: var(--glass-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 48px 36px 36px 36px;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    text-align: center;
-    overflow: hidden;
+  position: relative;
+  z-index: 2;
+  max-width: 400px;
+  margin: 5vh auto 0 auto;
+  background: var(--glass-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 48px 36px 36px 36px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  text-align: center;
+  overflow: hidden;
 }
 
 .logo-section {
-    margin-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .logo-img {
-    width: 56px;
-    height: 56px;
-    margin-bottom: 8px;
-    border-radius: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    background: #fff;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 0px;
+  /* border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background: #fff; */
 }
 
 .logo-title {
-    font-size: 2.1rem;
-    font-weight: 700;
-    margin: 0;
-    color: var(--primary-color);
-    letter-spacing: 1px;
+  font-size: 2.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--primary-color);
+  letter-spacing: 1px;
 }
 
 .subtitle {
-    font-size: 1.08rem;
-    color: #666;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
-    margin-bottom: 0;
+  font-size: 1.08rem;
+  color: #666;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+  margin-bottom: 0;
 }
 
 .input-group {
-    position: relative;
-    margin-bottom: 22px;
-    margin-right: 20px;
+  position: relative;
+  margin-bottom: 22px;
+  margin-right: 20px;
 }
 
 .input-group input {
-    width: 100%;
-    padding: 16px 8px 8px 10px;
-    border: 1.5px solid var(--light-gray-color);
-    border-radius: 10px;
-    background: var(--input-bg);
-    font-size: 1rem;
-    outline: none;
-    transition: background 0.22s, border-color 0.22s;
+  width: 100%;
+  padding: 16px 8px 8px 10px;
+  border: 1.5px solid var(--light-gray-color);
+  border-radius: 10px;
+  background: var(--input-bg);
+  font-size: 1rem;
+  outline: none;
+  transition: background 0.22s, border-color 0.22s;
 }
 
 .input-group input:focus {
-    background: var(--input-focus-bg);
-    border-color: var(--primary-color);
+  background: var(--input-focus-bg);
+  border-color: var(--primary-color);
 }
 
 .input-group label {
-    position: absolute;
-    left: 14px;
-    top: 12px;
-    font-size: 1rem;
-    color: #888;
-    pointer-events: none;
-    background: transparent;
-    transition: 0.19s cubic-bezier(.4,0,.2,1);
+  position: absolute;
+  left: 14px;
+  top: 12px;
+  font-size: 1rem;
+  color: #888;
+  pointer-events: none;
+  background: transparent;
+  transition: 0.19s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .input-group input:focus + label,
 .input-group input:not(:placeholder-shown) + label {
-    top: -8px;
-    left: 10px;
-    font-size: 0.86rem;
-    color: var(--primary-color);
-    background: var(--glass-bg);
-    padding: 0 6px;
-    border-radius: 6px;
+  top: -8px;
+  left: 10px;
+  font-size: 0.86rem;
+  color: var(--primary-color);
+  background: var(--glass-bg);
+  padding: 0 6px;
+  border-radius: 6px;
 }
 
 /* Button Row */
 .btn-row {
-    display: flex;
-    gap: 12px;
-    margin-top: 4px;
-    margin-bottom: 10px;
-    justify-content: center;
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  justify-content: center;
 }
 
-.btn-primary, .btn-secondary {
-    flex: 1 1 0;
-    padding: 12px 0;
-    font-size: 1.08rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+.btn-primary,
+.btn-secondary {
+  flex: 1 1 0;
+  padding: 12px 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .btn-primary {
-    background: var(--primary-color);
-    color: #fff;
+  background: var(--primary-color);
+  color: #fff;
 }
 
-.btn-primary:hover, .btn-primary:focus {
-    background: var(--primary-hover-color);
+.btn-primary:hover,
+.btn-primary:focus {
+  background: var(--primary-hover-color);
 }
 
 .btn-secondary {
-    background: var(--light-gray-color);
-    color: var(--primary-color);
+  background: var(--light-gray-color);
+  color: var(--primary-color);
 }
 
-.btn-secondary:hover, .btn-secondary:focus {
-    background: var(--primary-color);
-    color: #fff;
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background: #5c4978;
+  color: #fff;
 }
 
 #auth-message {
-    margin-top: 10px;
-    min-height: 22px;
-    color: #e74c3c;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: 0.2px;
+  margin-top: 10px;
+  min-height: 22px;
+  color: #e74c3c;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.2px;
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    .glass-card {
-        max-width: 97vw;
-        padding: 30px 5vw 22px 5vw;
-        margin: 32px 10px 0 10px;
-    }
-    .logo-title {
-        font-size: 1.34rem;
-    }
-    .input-group label {
-        font-size: 0.96rem;
-    }
-    .btn-row {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
+  .glass-card {
+    max-width: 97vw;
+    padding: 30px 5vw 22px 5vw;
+    margin: 32px 10px 0 10px;
+  }
+  .logo-title {
+    font-size: 1.34rem;
+  }
+  .input-group label {
+    font-size: 0.96rem;
+  }
+  .btn-row {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

@@ -1,210 +1,207 @@
 :root {
-    --primary-color: #007BFF;
-    --primary-hover-color: #0056b3;
-    --secondary-color: #f8f9fa;
-    --text-color: #333;
-    --light-gray-color: #e9ecef;
-    --border-radius: 18px;
-    --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
-    --glass-bg: rgba(255,255,255,0.75);
-    --glass-blur: blur(20px);
+  --primary-color: #007bff;
+  --primary-hover-color: #0056b3;
+  --secondary-color: #f8f9fa;
+  --text-color: #333;
+  --light-gray-color: #e9ecef;
+  --border-radius: 18px;
+  --box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-blur: blur(20px);
 }
 
 body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #007BFF 0%, #8f5eff 55%, #23c6e7 100%);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: 'Poppins', sans-serif;
+  min-height: 110vh;
+  background: linear-gradient(135deg, #007bff 0%, #8f5eff 55%, #23c6e7 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Poppins", sans-serif;
 }
 
 .glass-card {
-    max-width: 1100px;
-    margin: 48px auto;
-    background: var(--glass-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 36px 32px;
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    text-align: left;
+  max-width: 1100px;
+  margin: 48px auto;
+  background: var(--glass-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 36px 32px;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  text-align: left;
 }
 
 .dashboard-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
 }
 
 .dashboard-title {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .logo-img {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  width: 80px;
+  height: 80px;
 }
 
 .dashboard-header h1 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin: 0;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin: 0;
 }
 
 .dashboard-actions {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
-.btn-primary, .btn-secondary {
-    padding: 11px 24px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+.btn-primary,
+.btn-secondary {
+  padding: 11px 24px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .btn-primary {
-    background: var(--primary-color);
-    color: #fff;
+  background: var(--primary-color);
+  color: #fff;
 }
 .btn-primary:hover {
-    background: var(--primary-hover-color);
+  background: var(--primary-hover-color);
 }
 
 .btn-secondary {
-    background: var(--light-gray-color);
-    color: var(--primary-color);
+  background: var(--light-gray-color);
+  color: var(--primary-color);
 }
 .btn-secondary:hover {
-    background: var(--primary-color);
-    color: #fff;
+  background: var(--primary-color);
+  color: #fff;
 }
 
 .welcome-message {
-    font-size: 1.15rem;
-    color: #222b;
-    margin-bottom: 22px;
-    letter-spacing: 0.2px;
+  font-size: 1.15rem;
+  color: #222b;
+  margin-bottom: 22px;
+  letter-spacing: 0.2px;
 }
 
 /* Styling for the user email */
 .user-email {
-    color: var(--primary-color);
-    font-weight: 600;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
-
 .section-title {
-    margin: 10px 0 12px 0;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #444b;
+  margin: 10px 0 12px 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #444b;
 }
 
 .hostel-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 22px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
 }
 
 /* Hostel Card */
 .hostel-card {
-    background: rgba(255,255,255,0.83);
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(120,133,180,0.09);
-    padding: 22px 18px 18px 18px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    min-height: 210px;
-    overflow: hidden;
-    transition: box-shadow 0.19s;
+  background: rgba(255, 255, 255, 0.83);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(120, 133, 180, 0.09);
+  padding: 22px 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+  transition: box-shadow 0.19s;
 }
 .hostel-card:hover {
-    box-shadow: 0 8px 24px rgba(31, 38, 135, 0.18);
+  box-shadow: 0 8px 24px rgba(31, 38, 135, 0.18);
 }
 
 .hostel-title {
-    font-size: 1.33rem;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: var(--primary-color);
+  font-size: 1.33rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--primary-color);
 }
 
 .hostel-meta {
-    font-size: 0.96rem;
-    color: #555;
-    margin-bottom: 4px;
+  font-size: 0.96rem;
+  color: #555;
+  margin-bottom: 4px;
 }
 
 .hostel-actions {
-    margin-top: auto;
-    display: flex;
-    gap: 8px;
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
 }
 
 .hostel-btn {
-    padding: 6px 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.98rem;
-    font-weight: 500;
-    cursor: pointer;
-    background: var(--primary-color);
-    color: #fff;
-    transition: background 0.16s;
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: #fff;
+  transition: background 0.16s;
 }
 .hostel-btn.delete {
-    background: #e74c3c;
+  background: #e74c3c;
 }
 .hostel-btn.delete:hover {
-    background: #c0392b;
+  background: #c0392b;
 }
 .hostel-btn.edit {
-    background: #27ae60;
+  background: #27ae60;
 }
 .hostel-btn.edit:hover {
-    background: #219150;
+  background: #219150;
 }
 
 #dashboard-message {
-    margin-top: 18px;
-    color: #e74c3c;
-    font-weight: 500;
-    min-height: 22px;
+  margin-top: 18px;
+  color: #e74c3c;
+  font-weight: 500;
+  min-height: 22px;
 }
 
 @media (max-width: 700px) {
-    .glass-card {
-        padding: 18px 2vw;
-    }
-    .dashboard-header h1 {
-        font-size: 1.25rem;
-    }
+  .glass-card {
+    padding: 18px 2vw;
+  }
+  .dashboard-header h1 {
+    font-size: 1.25rem;
+  }
 }
 
 @media (max-width: 500px) {
-    .dashboard-header {
-        flex-direction: column;
-        gap: 12px;
-    }
-    .dashboard-actions {
-        width: 100%;
-        justify-content: stretch;
-        gap: 8px;
-    }
-    .hostel-list {
-        grid-template-columns: 1fr;
-    }
+  .dashboard-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .dashboard-actions {
+    width: 100%;
+    justify-content: stretch;
+    gap: 8px;
+  }
+  .hostel-list {
+    grid-template-columns: 1fr;
+  }
 }

@@ -1,84 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reviews - HostelFinder</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
     <header>
-        <nav class="container">
-            <a href="home-page.html" class="logo">HostelFinder</a>
-            <ul class="nav-links">
-                <li><a href="home-page.html#find-hostel">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact-us.html">Contact</a></li>
-            </ul>
-        </nav>
+      <nav class="container">
+        <a href="home-page.html" class="logo">HostelFinder</a>
+        <ul class="nav-links">
+          <li><a href="home-page.html#find-hostel">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact-us.html">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <section class="reviews-hero">
-            <div class="container">
-                <h1>Share Your HostelFinder Experience!</h1>
-                <p>Your feedback helps us improve and guides other students.</p>
-            </div>
-        </section>
+      <section class="reviews-hero">
+        <div class="container">
+          <h1>Share Your HostelFinder Experience!</h1>
+          <p>Your feedback helps us improve and guides other students.</p>
+        </div>
+      </section>
 
-        <section class="review-form-section container">
-            <form id="review-form" class="review-form">
-                <img id="reviews-gif" src="images/reviews.gif" alt="hostel">
-                <h2>Write Your Review</h2>
-                <div class="form-group">
-                    <label for="reviewer-name">Your Name</label>
-                    <input type="text" id="reviewer-name" required placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label for="university-of-study">University/College Name</label>
-                    <input type="text" id="university-of-study" required placeholder="e.g., University of Delhi">
-                </div>
-                <div class="form-group">
-                    <label for="rating">Rating (out of 5 Stars)</label>
-                    <select id="rating" required>
-                        <option value="" disabled selected>Select a rating</option>
-                        <option value="5">5 Stars - Excellent</option>
-                        <option value="4">4 Stars - Very Good</option>
-                        <option value="3">3 Stars - Good</option>
-                        <option value="2">2 Stars - Fair</option>
-                        <option value="1">1 Star - Poor</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="review-text">Your Review</label>
-                    <textarea id="review-text" rows="6" required placeholder="Share your detailed experience..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary">Submit Review</button>
-                <p id="review-message" class="form-message"></p>
-            </form>
-        </section>
+      <section class="review-form-section container">
+        <form id="review-form" class="review-form">
+          <img id="reviews-gif" src="images/reviews.gif" alt="hostel" />
+          <h2>Write Your Review</h2>
+          <div class="form-group">
+            <label for="reviewer-name">Your Name</label>
+            <input
+              type="text"
+              id="reviewer-name"
+              required
+              placeholder="Enter your name"
+            />
+          </div>
+          <div class="form-group">
+            <label for="university-of-study">University/College Name</label>
+            <input
+              type="text"
+              id="university-of-study"
+              required
+              placeholder="e.g., University of Delhi"
+            />
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating (out of 5 Stars)</label>
+            <select id="rating" required>
+              <option value="" disabled selected>Select a rating</option>
+              <option value="5">5 Stars - Excellent</option>
+              <option value="4">4 Stars - Very Good</option>
+              <option value="3">3 Stars - Good</option>
+              <option value="2">2 Stars - Fair</option>
+              <option value="1">1 Star - Poor</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="review-text">Your Review</label>
+            <textarea
+              id="review-text"
+              rows="6"
+              required
+              placeholder="Share your detailed experience..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-primary">Submit Review</button>
+          <p id="review-message" class="form-message"></p>
+        </form>
+      </section>
 
-        <section class="display-reviews-section container">
-            <h2>What Students Say :</h2>
-            <div id="review-cards-container" class="review-cards-grid">
-                <p class="loading-message" style="text-align: center; color: #666;">Loading reviews...</p>
-            </div>
-        </section>
+      <section class="display-reviews-section container">
+        <h2>What Students Say :</h2>
+        <div id="review-cards-container" class="review-cards-grid">
+          <p class="loading-message" style="text-align: center; color: #666">
+            Loading reviews...
+          </p>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
-        </div>
+      <div class="container">
+        <p>&copy; 2025 HostelFinder. All Rights Reserved.</p>
+      </div>
     </footer>
-    
+
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>    
-    
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
     <!-- <script src="main.js"></script> -->
     <script src="reviews.js"></script>
-    </body>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/service-worker.js", { scope: "/" });
+      }
+    </script>
+  </body>
 </html>
