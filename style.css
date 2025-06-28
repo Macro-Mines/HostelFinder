@@ -2163,30 +2163,19 @@ footer {
   }
 }
 
-
-
-
 #live-chat-fab {
   position: fixed;
-  bottom: 24px;
-  left: 24px;
-  z-index: 9999;
+  bottom: 20px;
+  left: 20px;
+  z-index: 2000;
   width: 56px;
   height: 56px;
-  /* border-radius: 50%;
-  box-shadow: 0 4px 16px #0003;
-  background: #007bff; */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* transition: box-shadow 0.2s, transform 0.2s; */
 }
 #live-chat-fab img {
   width: 55px;
   height: 55px;
 }
-/* #live-chat-fab:hover {
-  box-shadow: 0 8px 32px #007bff55;
-  transform: scale(1.08);
-  background: #0056b3;
-} */
+
