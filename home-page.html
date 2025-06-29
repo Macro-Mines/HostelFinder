@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   </head>
 
   <body>
@@ -155,6 +156,16 @@
               Please select a university to see available hostels.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section class="map-section">
+        <div>
+          <h2 style="text-align: center">Explore Hostels on the Map</h2>
+            <div
+            id="hostel-map"
+            style="width: 100%; min-height: 250px; height: 35vw; max-height: 400px; margin: 0; overflow: hidden"
+          ></div>
         </div>
       </section>
 
@@ -402,5 +413,6 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <script src="main.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   </body>
 </html>

@@ -1199,6 +1199,10 @@ footer {
   }
 }
 
+.map-section {
+  margin-top: 50px;
+}
+
 /* --- Owner Call to Action Section --- */
 .owner-cta-section {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -1207,7 +1211,7 @@ footer {
   color: var(--primary-color); /* White text for contrast */
   padding: 60px 20px; /* Ample padding top/bottom */
   text-align: center;
-  margin-top: 50px; /* Space from the section above */
+  margin-top: 0px; /* Space from the section above */
 }
 
 .owner-cta-section .owner-cta-content {
@@ -1255,7 +1259,7 @@ footer {
 @media (max-width: 768px) {
   .owner-cta-section {
     padding: 40px 10px;
-    margin-top: 30px;
+
     background-position: center top;
     /* Optionally, make the background less tall on mobile for faster loading: */
     background-size: cover;
@@ -1287,7 +1291,6 @@ footer {
 @media (max-width: 480px) {
   .owner-cta-section {
     padding: 25px 2vw;
-    margin-top: 15px;
   }
 
   .owner-cta-section h2 {
@@ -2179,3 +2182,6 @@ footer {
   height: 55px;
 }
 
+.leaflet-control-attribution {
+  display: none !important;
+}
