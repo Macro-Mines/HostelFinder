@@ -1,6 +1,6 @@
 {
   "lang": "en-us",
-  "name": "Hostel Finder App",
+  "name": "Hostel Finder",
   "short_name": "HostelFinder",
   "start_url": "/",
   "orientation": "any",
@@ -20,3 +20,4 @@
     }
   ]
 }
+
